@@ -37,14 +37,16 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'class' => 'yii\web\UrlManager',
+            // Hide index.php
             'showScriptName' => false,
+            // Use pretty URLs
+            'enablePrettyUrl' => true,
             'rules' => [
+                '<alias:\w+>' => 'site/<alias>'
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
