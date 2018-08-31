@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use common\models\ContentRating;
-use backend\models\search\ContentRating as ContentRatingSearch;
+use common\models\Suggestions;
+use frontend\models\search\Suggestions as SuggestionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ContentsRatingsController implements the CRUD actions for ContentRating model.
+ * SuggestionsController implements the CRUD actions for Suggestions model.
  */
-class ContentsRatingsController extends Controller
+class SuggestionsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Lists all ContentRating models.
+     * Lists all Suggestions models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ContentRatingSearch();
+        $searchModel = new SuggestionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Displays a single ContentRating model.
+     * Displays a single Suggestions model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Creates a new ContentRating model.
+     * Creates a new Suggestions model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ContentRating();
+        $model = new Suggestions();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Updates an existing ContentRating model.
+     * Updates an existing Suggestions model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Deletes an existing ContentRating model.
+     * Deletes an existing Suggestions model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Finds the ContentRating model based on its primary key value.
+     * Finds the Suggestions model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ContentRating the loaded model
+     * @return Suggestions the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ContentRating::findOne($id)) !== null) {
+        if (($model = Suggestions::findOne($id)) !== null) {
             return $model;
         }
 

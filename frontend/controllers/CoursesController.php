@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use common\models\Suggestions;
-use backend\models\search\Suggestions as SuggestionsSearch;
+use common\models\Courses;
+use frontend\models\search\Courses as CoursesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SuggestionsController implements the CRUD actions for Suggestions model.
+ * CoursesController implements the CRUD actions for Courses model.
  */
-class SuggestionsController extends Controller
+class CoursesController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class SuggestionsController extends Controller
     }
 
     /**
-     * Lists all Suggestions models.
+     * Lists all Courses models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SuggestionsSearch();
+        $searchModel = new CoursesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class SuggestionsController extends Controller
     }
 
     /**
-     * Displays a single Suggestions model.
+     * Displays a single Courses model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class SuggestionsController extends Controller
     }
 
     /**
-     * Creates a new Suggestions model.
+     * Creates a new Courses model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Suggestions();
+        $model = new Courses();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class SuggestionsController extends Controller
     }
 
     /**
-     * Updates an existing Suggestions model.
+     * Updates an existing Courses model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class SuggestionsController extends Controller
     }
 
     /**
-     * Deletes an existing Suggestions model.
+     * Deletes an existing Courses model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class SuggestionsController extends Controller
     }
 
     /**
-     * Finds the Suggestions model based on its primary key value.
+     * Finds the Courses model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Suggestions the loaded model
+     * @return Courses the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Suggestions::findOne($id)) !== null) {
+        if (($model = Courses::findOne($id)) !== null) {
             return $model;
         }
 

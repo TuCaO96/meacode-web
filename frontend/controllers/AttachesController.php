@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use common\models\Courses;
-use backend\models\search\Courses as CoursesSearch;
+use common\models\Attaches;
+use frontend\models\search\Attaches as AttachesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CoursesController implements the CRUD actions for Courses model.
+ * AttachesController implements the CRUD actions for Attaches model.
  */
-class CoursesController extends Controller
+class AttachesController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class CoursesController extends Controller
     }
 
     /**
-     * Lists all Courses models.
+     * Lists all Attaches models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CoursesSearch();
+        $searchModel = new AttachesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class CoursesController extends Controller
     }
 
     /**
-     * Displays a single Courses model.
+     * Displays a single Attaches model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class CoursesController extends Controller
     }
 
     /**
-     * Creates a new Courses model.
+     * Creates a new Attaches model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Courses();
+        $model = new Attaches();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class CoursesController extends Controller
     }
 
     /**
-     * Updates an existing Courses model.
+     * Updates an existing Attaches model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class CoursesController extends Controller
     }
 
     /**
-     * Deletes an existing Courses model.
+     * Deletes an existing Attaches model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class CoursesController extends Controller
     }
 
     /**
-     * Finds the Courses model based on its primary key value.
+     * Finds the Attaches model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Courses the loaded model
+     * @return Attaches the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Courses::findOne($id)) !== null) {
+        if (($model = Attaches::findOne($id)) !== null) {
             return $model;
         }
 

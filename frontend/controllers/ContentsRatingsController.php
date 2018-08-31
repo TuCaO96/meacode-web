@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use common\models\Attaches;
-use backend\models\search\Attaches as AttachesSearch;
+use common\models\ContentRating;
+use frontend\models\search\ContentRating as ContentRatingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AttachesController implements the CRUD actions for Attaches model.
+ * ContentsRatingsController implements the CRUD actions for ContentRating model.
  */
-class AttachesController extends Controller
+class ContentsRatingsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class AttachesController extends Controller
     }
 
     /**
-     * Lists all Attaches models.
+     * Lists all ContentRating models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AttachesSearch();
+        $searchModel = new ContentRatingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class AttachesController extends Controller
     }
 
     /**
-     * Displays a single Attaches model.
+     * Displays a single ContentRating model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class AttachesController extends Controller
     }
 
     /**
-     * Creates a new Attaches model.
+     * Creates a new ContentRating model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Attaches();
+        $model = new ContentRating();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class AttachesController extends Controller
     }
 
     /**
-     * Updates an existing Attaches model.
+     * Updates an existing ContentRating model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class AttachesController extends Controller
     }
 
     /**
-     * Deletes an existing Attaches model.
+     * Deletes an existing ContentRating model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class AttachesController extends Controller
     }
 
     /**
-     * Finds the Attaches model based on its primary key value.
+     * Finds the ContentRating model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Attaches the loaded model
+     * @return ContentRating the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Attaches::findOne($id)) !== null) {
+        if (($model = ContentRating::findOne($id)) !== null) {
             return $model;
         }
 
