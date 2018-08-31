@@ -5,12 +5,12 @@ namespace frontend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Attaches as AttachesModel;
+use common\models\Users as UsersModel;
 
 /**
- * Attaches represents the model behind the search form of `common\models\Attaches`.
+ * Users represents the model behind the search form of `common\models\Users`.
  */
-class Attaches extends AttachesModel
+class Users extends UsersModel
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class Attaches extends AttachesModel
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'path', 'url', 'mime_type'], 'safe'],
+            [['id', 'type', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class Attaches extends AttachesModel
      */
     public function search($params)
     {
-        $query = AttachesModel::find();
+        $query = UsersModel::find();
 
         // add conditions that should always apply here
 
@@ -60,14 +60,17 @@ class Attaches extends AttachesModel
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'type' => $this->type,
+            'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'name', $this->name])
-            ->andFilterWhere(['ilike', 'path', $this->path])
-            ->andFilterWhere(['ilike', 'url', $this->url])
-            ->andFilterWhere(['ilike', 'mime_type', $this->mime_type]);
+        $query->andFilterWhere(['ilike', 'username', $this->username])
+            ->andFilterWhere(['ilike', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['ilike', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['ilike', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['ilike', 'email', $this->email]);
 
         return $dataProvider;
     }
