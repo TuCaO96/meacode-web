@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "suggestions".
  *
  * @property int $id
+ * @property int $user_id
  * @property string $title
  * @property string $text
  * @property int $created_at
