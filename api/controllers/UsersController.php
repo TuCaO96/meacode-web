@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace api\controllers;
 
 use yii\filters\auth\CompositeAuth;
 use yii\filters\ContentNegotiator;
