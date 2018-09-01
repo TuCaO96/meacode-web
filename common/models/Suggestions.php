@@ -14,6 +14,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  *
+ * @property Users $user
  * @property SuggestionsAttaches[] $suggestionsAttaches
  * @property Attaches[] $attaches
  */
@@ -27,6 +28,13 @@ class Suggestions extends \yii\db\ActiveRecord
         return 'suggestions';
     }
 
+    public function fields()
+    {
+        return [
+            'id', 'title', 'text', 'user'
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -35,9 +43,10 @@ class Suggestions extends \yii\db\ActiveRecord
         return [
             [['text'], 'string'],
             [['created_at', 'updated_at'], 'required'],
-            [['created_at', 'updated_at'], 'default', 'value' => null],
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at', 'user_id'], 'default', 'value' => null],
+            [['created_at', 'updated_at', 'user_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -48,6 +57,7 @@ class Suggestions extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'user_id' => Yii::t('app', 'User ID'),
             'title' => Yii::t('app', 'Title'),
             'text' => Yii::t('app', 'Text'),
             'created_at' => Yii::t('app', 'Created At'),
