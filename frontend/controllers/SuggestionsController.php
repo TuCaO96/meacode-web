@@ -66,32 +66,47 @@ class SuggestionsController extends Controller
     {
         $model = new Suggestions();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($model->load(Yii::$app->request->post())){
+            $model->created_at = date('U');
+            $model->updated_at = date('U');
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else{
+                return $this->render('create', [
+                    'model' => $model,
+                    'errors' => $model->getErrors()
+                ]);
+            }
         }
+
 
         return $this->render('create', [
             'model' => $model,
+            'errors' => null
         ]);
     }
 
-    /**
-     * Updates an existing Suggestions model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->updated_at = date('U');
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else{
+                return $this->render('update', [
+                    'model' => $model,
+                    'errors' => $model->getErrors()
+                ]);
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'errors' => null
         ]);
     }
 
