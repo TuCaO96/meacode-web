@@ -29,7 +29,7 @@ return [
     'Create Contents' => '',
     'Create Courses' => '',
     'Create Suggestions' => '',
-    'Create Users' => '',
+    'Create Users' => 'Criar Usuários',
     'Delete' => '',
     'Reset' => '',
     'Save' => '',
@@ -44,5 +44,5 @@ return [
     'Update Courses: mode' => '',
     'Update Suggestions: mode' => '',
     'Update Users: mode' => '',
-    'Users' => '',
+    'Users' => 'Usuários',
 ];
