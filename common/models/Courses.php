@@ -28,6 +28,17 @@ class Courses extends \yii\db\ActiveRecord
         return 'courses';
     }
 
+    public function fields()
+    {
+        return [
+            'id',
+            'name',
+            'category',
+            'attaches',
+            'contents'
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */

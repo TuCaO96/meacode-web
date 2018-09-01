@@ -45,6 +45,34 @@ return [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
+                    'controller' => 'courses',
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'suggestions',
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'categories',
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'contents',
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'site',
                     'tokens' => [
                         '{id}' => '<id:\\w+>'

@@ -71,6 +71,11 @@ class Suggestions extends \yii\db\ActiveRecord
         return $this->hasMany(Attaches::className(), ['id' => 'attaches_id'])->viaTable('suggestions_attaches', ['suggestions_id' => 'id']);
     }
 
+    public function getUser()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+
     /**
      * {@inheritdoc}
      * @return SuggestionsQuery the active query used by this AR class.

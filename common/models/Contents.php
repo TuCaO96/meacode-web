@@ -18,6 +18,7 @@ use Yii;
  * @property Courses $course
  * @property Users $user
  * @property ContentsAttaches[] $contentsAttaches
+ * @property ContentRating[] $ratings
  * @property Attaches[] $attaches
  */
 class Contents extends \yii\db\ActiveRecord
@@ -28,6 +29,18 @@ class Contents extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'contents';
+    }
+
+    public function fields()
+    {
+        return [
+            'id',
+            'title',
+            'text',
+            'user',
+            'attaches',
+            'ratings'
+        ];
     }
 
     /**
@@ -84,6 +97,14 @@ class Contents extends \yii\db\ActiveRecord
     public function getContentsAttaches()
     {
         return $this->hasMany(ContentsAttaches::className(), ['contents_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRatings()
+    {
+        return $this->hasMany(ContentRating::className(), ['content_id' => 'id']);
     }
 
     /**

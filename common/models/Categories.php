@@ -26,6 +26,15 @@ class Categories extends \yii\db\ActiveRecord
         return 'categories';
     }
 
+    public function fields()
+    {
+        return [
+            'id',
+            'name',
+            'attaches'
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
