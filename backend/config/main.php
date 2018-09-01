@@ -13,17 +13,9 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
-        'request' => [
-            'csrfParam' => '_csrf-backend',
-        ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
-        ],
-        'session' => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            'enableAutoLogin' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -34,19 +26,32 @@ return [
                 ],
             ],
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
+        'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
-            // Hide index.php
-            'showScriptName' => false,
-            // Use pretty URLs
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
             'rules' => [
-                '<alias:\w+>' => 'site/<alias>'
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'users',
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'site',
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ]
+                ]
             ],
-        ],
+        ]
     ],
     'params' => $params,
 ];
