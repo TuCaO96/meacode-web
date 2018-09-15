@@ -3,6 +3,7 @@
 namespace api\controllers;
 
 use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBearerAuth;
 use yii\filters\ContentNegotiator;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
@@ -27,7 +28,7 @@ class CoursesController extends ActiveController
                 'actions' => $this->verbs(),
             ],
             'authenticator' => [
-                'class' => CompositeAuth::className(),
+                'class' => HttpBearerAuth::className(),
             ],
             'rateLimiter' => [
                 'class' => RateLimiter::className(),

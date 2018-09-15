@@ -14,7 +14,7 @@ return [
     'modules' => [],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\Users',
             'enableAutoLogin' => false,
             'enableSession' => false,
             'loginUrl' => false
@@ -80,13 +80,6 @@ return [
                     'extraPatterns' => [
                         'POST login' => 'login',
                         'POST signup' => 'signup'
-                    ]
-                ],
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'site',
-                    'tokens' => [
-                        '{id}' => '<id:\\w+>'
                     ]
                 ]
             ],
