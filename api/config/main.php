@@ -16,6 +16,8 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
+            'enableSession' => false,
+            'loginUrl' => false
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -69,6 +71,15 @@ return [
                     'controller' => 'contents',
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'auth',
+                    'pluralize' => false,
+                    'extraPatterns' => [
+                        'POST login' => 'login',
+                        'POST signup' => 'signup'
                     ]
                 ],
                 [
