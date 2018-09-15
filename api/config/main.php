@@ -79,6 +79,7 @@ return [
                     'pluralize' => false,
                     'extraPatterns' => [
                         'POST login' => 'login',
+                        'POST social_login' => 'social-login',
                         'POST signup' => 'signup'
                     ]
                 ]

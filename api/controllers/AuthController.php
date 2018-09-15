@@ -119,9 +119,46 @@ class AuthController extends ActiveController
         return $response;
     }
 
-    public function getLogout()
+    public function actionSocialLogin()
     {
+        $user = new Users();
+        $user->username = \Yii::$app->request->post('user_id');
+        $user->email = \Yii::$app->request->post('user_id');
+        $user->auth_key = \Yii::$app->request->post('token');
+        $user->setPassword(\Yii::$app->request->post('user_id'));
 
+        $userQuery = new UsersQuery($user);
+
+        $response = \Yii::$app->response;
+        $response->statusCode = 200;
+        $response->format = Response::FORMAT_JSON;
+
+        if ($userQuery->where(['email' => $user->email])->exists()) {
+            $user = $userQuery->where(['email' => $user->email])->one();
+            $response->data = [
+                'token' => $user->getAuthKey(),
+                'user' => $user
+            ];
+
+            return $response;
+        }
+
+        if (!$user->save()) {
+            $response->statusCode = 422;
+            $response->data = [
+                'errors' => [
+                    $user->getErrors()
+                ]
+            ];
+            return $response;
+        }
+
+        $response->data = [
+            'token' => $user->getAuthKey(),
+            'user' => $user
+        ];
+
+        return $response;
     }
 
 }
