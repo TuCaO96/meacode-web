@@ -30,6 +30,7 @@ class Users extends ActiveRecord implements IdentityInterface
     public function fields()
     {
         return [
+            'id',
             'username',
             'email',
             'status',

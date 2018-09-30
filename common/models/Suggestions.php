@@ -42,9 +42,8 @@ class Suggestions extends \yii\db\ActiveRecord
     {
         return [
             [['text'], 'string'],
-            [['created_at', 'updated_at'], 'required'],
-            [['created_at', 'updated_at', 'user_id'], 'default', 'value' => null],
-            [['created_at', 'updated_at', 'user_id'], 'integer'],
+            [['title', 'text'], 'required'],
+            [['user_id'], 'default', 'value' => null],
             [['title'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];

@@ -26,10 +26,10 @@ class ContentsController extends ActiveController
             'verbFilter' => [
                 'class' => VerbFilter::className(),
                 'actions' => $this->verbs(),
-            ],
+            ],/*
             'authenticator' => [
                 'class' => HttpBearerAuth::className(),
-            ],
+            ],*/
             'rateLimiter' => [
                 'class' => RateLimiter::className(),
             ],
