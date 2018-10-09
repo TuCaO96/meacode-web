@@ -121,11 +121,18 @@ class AuthController extends ActiveController
 
     public function actionSocialLogin()
     {
+
+        $full_name = \Yii::$app->request->post('image_url');
+        $names = explode(' ', $full_name, 2);
+
         $user = new Users();
         $user->username = \Yii::$app->request->post('user_id');
         $user->email = \Yii::$app->request->post('user_id');
+        $user->image_url = \Yii::$app->request->post('image_url');
         $user->auth_key = \Yii::$app->request->post('token');
         $user->setPassword(\Yii::$app->request->post('user_id'));
+        $user->first_name = $names[0];
+        $user->last_name = $names[1];
 
         $userQuery = new UsersQuery($user);
 
