@@ -19,7 +19,11 @@ if($errors !== null){
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'text')->widget(\yii\redactor\widgets\Redactor::className(), [
+        'clientOptions' => [
+            'imageUpload' => \yii\helpers\Url::to(['/redactor/upload/image']),
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
         ['prompt' => Yii::t('app', 'Select an user')]) ?>

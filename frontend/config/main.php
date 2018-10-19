@@ -12,6 +12,12 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'language' => 'pt',
+    'modules' => [
+        'redactor' => 'yii\redactor\RedactorModule',
+        'class' => 'yii\redactor\RedactorModule',
+        'uploadDir' => '@webroot/uploads',
+        'uploadUrl' => '/files/uploads',
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',

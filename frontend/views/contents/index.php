@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'text:ntext',
             'user_id',
             'course_id',
             //'created_at',
