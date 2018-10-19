@@ -41,8 +41,12 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'users',
+                    'extraPatterns' => [
+                        'GET token/{token}' => 'get-user-by-token'
+                    ],
                     'tokens' => [
-                        '{id}' => '<id:\\w+>'
+                        '{id}' => '<id:\\w+>',
+                        '{token}' => '<token>'
                     ]
                 ],
                 [

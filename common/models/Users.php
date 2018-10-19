@@ -115,6 +115,13 @@ class Users extends ActiveRecord implements IdentityInterface
         ]);
     }
 
+    public static function findByToken($token)
+    {
+        return static::findOne([
+            'auth_key' => $token
+        ]);
+    }
+
     /**
      * Finds out if password reset token is valid
      *

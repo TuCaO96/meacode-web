@@ -122,7 +122,7 @@ class AuthController extends ActiveController
     public function actionSocialLogin()
     {
 
-        $full_name = \Yii::$app->request->post('image_url');
+        $full_name = \Yii::$app->request->post('name');
         $names = explode(' ', $full_name, 2);
 
         $user = new Users();

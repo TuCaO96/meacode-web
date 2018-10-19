@@ -2,6 +2,8 @@
 
 namespace api\controllers;
 
+use common\models\Users;
+use common\models\UsersQuery;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\ContentNegotiator;
 use yii\filters\RateLimiter;
@@ -35,4 +37,24 @@ class UsersController extends ActiveController
         ];
     }
 
+    public function actionGetUserByToken()
+    {
+        $token = \Yii::$app->request->get('token');
+        $user = Users::findByToken($token);
+
+        $response = \Yii::$app->response;
+        $response->statusCode = 200;
+        $response->format = Response::FORMAT_JSON;
+
+        if($user == null){
+            $response->statusCode = 404;
+            $response->data = null;
+            return $response;
+        }
+
+        $response->data = $user;
+
+        return $response;
+    }
+    
 }
