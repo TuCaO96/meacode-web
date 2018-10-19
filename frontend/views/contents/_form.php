@@ -25,6 +25,8 @@ if($errors !== null){
         ],
     ]) ?>
 
+    <?= $form->field($model, 'paid')->dropDownList([false => 'Não', true => 'Sim']) ?>
+
     <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
         ['prompt' => Yii::t('app', 'Select an user')]) ?>
 

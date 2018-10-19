@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "contents".
  *
  * @property int $id
+ * @property boolean $paid
  * @property string $title
  * @property string $text
  * @property int $user_id
@@ -53,6 +54,7 @@ class Contents extends \yii\db\ActiveRecord
             [['user_id', 'course_id', 'created_at', 'updated_at'], 'required'],
             [['user_id', 'course_id', 'created_at', 'updated_at'], 'default', 'value' => null],
             [['user_id', 'course_id', 'created_at', 'updated_at'], 'integer'],
+            [['paid'], 'boolean'],
             [['title'], 'string', 'max' => 255],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Courses::className(), 'targetAttribute' => ['course_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -68,6 +70,7 @@ class Contents extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'text' => Yii::t('app', 'Text'),
+            'paid' => Yii::t('app', 'Paid?'),
             'user_id' => Yii::t('app', 'User ID'),
             'course_id' => Yii::t('app', 'Course ID'),
             'created_at' => Yii::t('app', 'Created At'),

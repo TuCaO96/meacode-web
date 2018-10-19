@@ -20,6 +20,7 @@ class m180831_131810_create_contents_table extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string(),
             'text' => $this->text(),
+            'paid' => $this->boolean()->defaultValue(false),
             'user_id' => $this->integer()->notNull(),
             'course_id' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
