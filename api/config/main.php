@@ -51,6 +51,14 @@ return [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
+                    'controller' => 'users-search',
+                    'extraPatterns' => [
+                        'POST query' => 'post-user-search-result'
+                    ],
+                    'pluralize' => false
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'courses',
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
