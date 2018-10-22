@@ -42,8 +42,8 @@ class UsersSearchController extends ActiveController
 
     public function actionPostUserSearchResult()
     {
-        $user_id = \Yii::$app->request->get('user_id');
-        $query = \Yii::$app->request->get('query');
+        $user_id = \Yii::$app->request->post('user_id');
+        $query = \Yii::$app->request->post('query');
 
         $response = \Yii::$app->response;
         $response->statusCode = 200;
@@ -55,18 +55,19 @@ class UsersSearchController extends ActiveController
         $user_search->created_at = time();
 
         if(!$user_search->save()){
-            $response->statusCode = 404;
+            $response->statusCode = 422;
             $response->data = null;
+
             return $response;
         }
 
         $courses = Courses::find()
-            ->where('name LIKE %'.$query.'%')
+            ->where('name LIKE :query', [':query' => '%'.$query.'%'])
             ->all();
 
         $contents = Contents::find()
-            ->where('title LIKE %'.$query.'%')
-            ->orWhere('text LIKE %'.$query.'%')
+            ->where('title LIKE :query', [':query' =>'%'.$query.'%'])
+            ->orWhere('text LIKE :query', [':query' =>'%'.$query.'%'])
             ->all();
 
         $response->data = [
