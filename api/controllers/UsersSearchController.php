@@ -49,16 +49,18 @@ class UsersSearchController extends ActiveController
         $response->statusCode = 200;
         $response->format = Response::FORMAT_JSON;
 
-        $user_search = new UserSearches();
-        $user_search->user_id = $user_id;
-        $user_search->search_query = $query;
-        $user_search->created_at = time();
+        if($user_id != -1){
+            $user_search = new UserSearches();
+            $user_search->user_id = $user_id;
+            $user_search->search_query = $query;
+            $user_search->created_at = time();
 
-        if(!$user_search->save()){
-            $response->statusCode = 422;
-            $response->data = null;
+            if(!$user_search->save()){
+                $response->statusCode = 422;
+                $response->data = null;
 
-            return $response;
+                return $response;
+            }
         }
 
         $courses = Courses::find()
