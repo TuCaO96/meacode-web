@@ -63,12 +63,12 @@ class UsersSearchController extends ActiveController
 
 
         $courses = Courses::find()
-            ->where('name LIKE :query', [':query' => '%'.strtolower($query).'%'])
+            ->where('LOWER(name) LIKE :query', [':query' => '%'.strtolower($query).'%'])
             ->all();
 
         $contents = Contents::find()
-            ->where('title LIKE :query', [':query' =>'%'.strtolower($query).'%'])
-            ->orWhere('text LIKE :query', [':query' =>'%'.strtolower($query).'%'])
+            ->where('LOWER(title) LIKE :query', [':query' =>'%'.strtolower($query).'%'])
+            ->orWhere('LOWER(title) LIKE :query', [':query' =>'%'.strtolower($query).'%'])
             ->all();
 
         $response->data = [
