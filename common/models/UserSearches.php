@@ -24,6 +24,14 @@ class UserSearches extends \yii\db\ActiveRecord
         return 'user_searches';
     }
 
+    public function attributes()
+    {
+        $attributes = parent::attributes();
+        $attributes[] = 'count_query';
+
+        return $attributes;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -45,9 +53,9 @@ class UserSearches extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'search_query' => Yii::t('app', 'Search Query'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'user_id' => Yii::t('app', 'Usuário'),
+            'search_query' => Yii::t('app', 'Termo'),
+            'created_at' => Yii::t('app', 'Criado Em'),
         ];
     }
 
