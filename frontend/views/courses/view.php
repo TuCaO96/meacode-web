@@ -38,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'category_id',
-                'label' => 'Categoria'
+                'label' => 'Categoria',
+                'value' => function($model) {
+                    return $model->category->name;
+                }
             ],
         ],
     ]) ?>

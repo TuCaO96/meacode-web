@@ -38,11 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'user_id',
-                'label' => 'Usuário'
+                'label' => 'Usuário',
+                'value' => function($model) {
+                    return $model->user->username;
+                }
             ],
             [
                 'attribute' => 'course_id',
-                'label' => 'Curso'
+                'label' => 'Curso',
+                'value' => function($model) {
+                    return $model->course->name;
+                }
             ],
         ],
     ]) ?>

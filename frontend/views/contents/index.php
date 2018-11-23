@@ -34,6 +34,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'title',
                 'label' => 'Título'
             ],
+            [
+                'attribute' => 'user_id',
+                'label' => 'Usuário',
+                'value' => function($model) {
+                    return $model->user->username;
+                }
+            ],
+            [
+                'attribute' => 'course_id',
+                'label' => 'Curso',
+                'value' => function($model) {
+                    return $model->course->name;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
