@@ -26,11 +26,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'path',
-            'url:url',
-            'mime_type',
+            [
+                'attribute' => 'id',
+                'label' => 'ID'
+            ],
+            [
+                'attribute' => 'name',
+                'label' => 'Name'
+            ],
+            [
+                'attribute' => 'path',
+                'label' => 'Caminho'
+            ],[
+                'attribute' => 'url:url',
+                'label' => 'URL'
+            ],[
+                'attribute' => 'mime_type',
+                'label' => 'Tipo MIME'
+            ],
             //'created_at',
             //'updated_at',
 
