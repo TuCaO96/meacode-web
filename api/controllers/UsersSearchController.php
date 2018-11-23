@@ -56,7 +56,7 @@ class UsersSearchController extends ActiveController
 
         if(!$user_search->save()){
             $response->statusCode = 422;
-            $response->data = null;
+            $response->data = $user_search->getErrors();
 
             return $response;
         }

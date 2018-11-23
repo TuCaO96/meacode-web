@@ -38,7 +38,6 @@ class UserSearches extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'created_at'], 'required'],
             [['user_id', 'created_at'], 'default', 'value' => null],
             [['user_id', 'created_at'], 'integer'],
             [['search_query'], 'string', 'max' => 255],

@@ -17,7 +17,7 @@ class m181020_220838_create_user_searches_table extends Migration
     {
         $this->createTable('user_searches', [
             'id' => $this->primaryKey(),
-            'user_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer(),
             'search_query' => $this->string(),
             'created_at' => $this->integer()->notNull(),
         ]);
