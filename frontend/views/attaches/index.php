@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'path',
-            'url:url',
-            'mime_type',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'path' => Yii::t('app', 'Path'),
+            'url:url' => Yii::t('app', 'Url'),
+            'mime_type' => Yii::t('app', 'Mime Type'),
             //'created_at',
             //'updated_at',
 

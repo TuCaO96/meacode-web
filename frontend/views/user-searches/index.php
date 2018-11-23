@@ -22,7 +22,7 @@ $userSearches = \common\models\UserSearches::find()
         <thead>
             <tr>
                 <th><?= Yii::t('app', 'Termo') ?></th>
-                <th><?= Yii::t('app', 'Quantidade') ?></th>
+                <th><?= Yii::t('app', 'Quantidade de vezes buscado') ?></th>
             </tr>
         </thead>
         <tbody>

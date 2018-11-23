@@ -26,12 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'content_id',
-            'score',
-            'created_at',
-            //'updated_at',
+            'id' => Yii::t('app', 'ID'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'content_id' => Yii::t('app', 'Content ID'),
+            'score' => Yii::t('app', 'Score'),
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

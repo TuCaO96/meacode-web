@@ -26,12 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            //'email:email',
+            'id' => Yii::t('app', 'ID'),
+            'username' => Yii::t('app', 'Username'),
+//            'auth_key' => Yii::t('app', 'Auth Key'),
+//            'password_hash' => Yii::t('app', 'Password Hash'),
+//            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'email:email' => Yii::t('app', 'Email'),
             //'type',
             //'status',
             //'created_at',
