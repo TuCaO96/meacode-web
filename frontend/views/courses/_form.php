@@ -17,6 +17,11 @@ if($errors !== null){
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <div class="form-group">
+        <label class="control-label">Imagem</label>
+        <input type="file" name="file">
+    </div>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Categories::find()->all(), 'id', 'name'),

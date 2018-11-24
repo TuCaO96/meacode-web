@@ -91,7 +91,11 @@ class CoursesController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post(), '')) {
+            echo '<pre>';
+            var_dump($model);
+            die();
+
             $model->updated_at = date('U');
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
