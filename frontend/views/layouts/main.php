@@ -44,7 +44,6 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Cursos', 'url' => ['/courses']];
         $menuItems[] = ['label' => 'Conteúdos', 'url' => ['/contents']];
         $menuItems[] = ['label' => 'Sugestões', 'url' => ['/suggestions']];
-        $menuItems[] = ['label' => 'Usuários', 'url' => ['/users']];
         $menuItems[] = ['label' => 'Termos mais buscados', 'url' => ['/user-searches']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
