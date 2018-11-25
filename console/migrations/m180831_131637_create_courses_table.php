@@ -18,6 +18,7 @@ class m180831_131637_create_courses_table extends Migration
         $this->createTable('courses', [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
+            'image_url' => $this->string(),
             'category_id' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),

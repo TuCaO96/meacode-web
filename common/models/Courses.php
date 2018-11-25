@@ -9,14 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string $image_url
  * @property int $category_id
  * @property int $created_at
  * @property int $updated_at
  *
  * @property Contents[] $contents
  * @property Categories $category
- * @property CoursesAttaches[] $coursesAttaches
- * @property Attaches[] $attaches
  */
 class Courses extends \yii\db\ActiveRecord
 {
@@ -33,8 +32,8 @@ class Courses extends \yii\db\ActiveRecord
         return [
             'id',
             'name',
+            'image_url',
             'category',
-            'attaches',
             'contents'
         ];
     }
@@ -60,6 +59,7 @@ class Courses extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'image_url' => Yii::t('app', 'URL da imagem'),
             'name' => Yii::t('app', 'Name'),
             'category_id' => Yii::t('app', 'Category ID'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -81,22 +81,6 @@ class Courses extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Categories::className(), ['id' => 'category_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCoursesAttaches()
-    {
-        return $this->hasMany(CoursesAttaches::className(), ['courses_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAttaches()
-    {
-        return $this->hasMany(Attaches::className(), ['id' => 'attaches_id'])->viaTable('courses_attaches', ['courses_id' => 'id']);
     }
 
     /**

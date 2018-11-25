@@ -17,10 +17,7 @@ if($errors !== null){
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <div class="form-group">
-        <label class="control-label">Imagem</label>
-        <input type="file" name="file">
-    </div>
+    <?= $form->field($model, 'image_url')->fileInput() ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

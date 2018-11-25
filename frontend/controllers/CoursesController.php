@@ -8,6 +8,7 @@ use frontend\models\search\Courses as CoursesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * CoursesController implements the CRUD actions for Courses model.
@@ -69,7 +70,16 @@ class CoursesController extends Controller
         if($model->load(Yii::$app->request->post())){
             $model->created_at = date('U');
             $model->updated_at = date('U');
+
             if ($model->save()) {
+
+                $file = UploadedFile::getInstance($model, 'image_url');
+                $url = 'images/courses/'. $model->id . '.' . $file->extension;
+                $file->saveAs($url);
+
+                $model->image_url = $url;
+                $model->save();
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
             else{
@@ -92,10 +102,12 @@ class CoursesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post(), '')) {
-            echo '<pre>';
-            var_dump($model);
-            die();
 
+            $file = UploadedFile::getInstance($model, 'image_url');
+            $url = 'images/courses/'. $id . '.' . $file->extension;
+            $file->saveAs($url);
+
+            $model->image_url = 'images/courses/'. $id . '.' . $file->extension;
             $model->updated_at = date('U');
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
