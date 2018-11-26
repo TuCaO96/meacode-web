@@ -17,6 +17,14 @@ if($errors !== null){
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?php if(!is_null($model->image_url)): ?>
+
+    <div class="form-group">
+        <img width="120px" alt="Imagem do curso" height="120px" src="<?= Yii::getAlias('@web') . '/' . $model->image_url ?>">
+    </div>
+
+    <?php endif; ?>
+
     <?= $form->field($model, 'image_url')->fileInput() ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
