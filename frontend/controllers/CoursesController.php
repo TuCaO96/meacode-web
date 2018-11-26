@@ -74,10 +74,13 @@ class CoursesController extends Controller
             if ($model->save()) {
 
                 $file = UploadedFile::getInstance($model, 'image_url');
-                $url = 'images/courses/'. $model->id . '.' . $file->extension;
-                $file->saveAs($url);
+                if(!is_null($file)){
+                    $url = 'images/courses/'. $model->id . '.' . $file->extension;
+                    $file->saveAs($url);
 
-                $model->image_url = $url;
+                    $model->image_url = $url;
+                }
+
                 $model->save();
 
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -104,10 +107,13 @@ class CoursesController extends Controller
         if ($model->load(Yii::$app->request->post(), '')) {
 
             $file = UploadedFile::getInstance($model, 'image_url');
-            $url = 'images/courses/'. $id . '.' . $file->extension;
-            $file->saveAs($url);
+            if(!is_null($file)){
+                $url = 'images/courses/'. $id . '.' . $file->extension;
+                $file->saveAs($url);
 
-            $model->image_url = 'images/courses/'. $id . '.' . $file->extension;
+                $model->image_url = 'images/courses/'. $id . '.' . $file->extension;
+            }
+
             $model->updated_at = date('U');
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
