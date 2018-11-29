@@ -20,6 +20,9 @@ if($errors !== null){
     <?= $form->field($model, 'title')->textInput(['maxlength' => true])
         ->label('Título')?>
 
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true])
+        ->label('Email')?>
+
     <?= $form->field($model, 'text')->textarea(['rows' => 6])
         ->label('Texto')?>
 

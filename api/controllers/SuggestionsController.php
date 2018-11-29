@@ -36,4 +36,22 @@ class SuggestionsController extends ActiveController
         ];
     }
 
+    public function actionSendReply()
+    {
+        $email = \Yii::$app->request->post('email');
+        $message = \Yii::$app->request->post('message');
+        $suggestion_text = \Yii::$app->request->post('suggestion_text');
+
+        return \Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'replySuggestion-html', 'text' => 'replySuggestion-text'],
+                ['suggestion_text' => $suggestion_text, 'message' => $message, 'email' => $email]
+            )
+            ->setFrom([\Yii::$app->params['supportEmail'] => 'Sistema ' . \Yii::$app->name])
+            ->setTo($email)
+            ->setSubject('Respondemos sua sugestão de conteúdo!')
+            ->send();
+    }
+    
 }

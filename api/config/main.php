@@ -69,7 +69,10 @@ return [
                     'controller' => 'suggestions',
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
-                    ]
+                    ],
+                    'extraPatterns' => [
+                        'POST send_reply' => 'send-reply'
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',

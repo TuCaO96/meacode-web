@@ -19,7 +19,7 @@ class Suggestions extends SuggestionsModel
     {
         return [
             [['id', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'text'], 'safe'],
+            [['title', 'text', 'email'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class Suggestions extends SuggestionsModel
         ]);
 
         $query->andFilterWhere(['ilike', 'title', $this->title])
+            ->andFilterWhere(['ilike', 'email', $this->text])
             ->andFilterWhere(['ilike', 'text', $this->text]);
 
         return $dataProvider;
