@@ -45,6 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'title',
                 'label' => 'Título'
             ],
+            [
+                'attribute' => 'text:text',
+                'label' => 'Texto'
+            ],
         ],
     ]) ?>
 </div>
