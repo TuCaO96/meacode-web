@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Título'
             ],
             [
-                'attribute' => 'text:text',
+                'attribute' => 'text',
                 'label' => 'Texto'
             ],
         ],
