@@ -87,11 +87,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script>
+    <?php if(is_null($model->email) || strlen($model->email) < 1){ ?>
     $(document).ready(function () {
-        <? if(is_null($model->email) || strlen($model->email) < 1): ?>
         $('#btn-reply').addClass('disabled');
-        <? endif; ?>
     });
+    <?php } ?>
 
     function sendReply() {
         var message = $('#replyMessage').val();
