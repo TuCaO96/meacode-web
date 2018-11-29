@@ -69,7 +69,6 @@ class ContentsController extends Controller
         if($model->load(Yii::$app->request->post())){
             $model->created_at = date('U');
             $model->updated_at = date('U');
-            $model->text = '<div style="background-color: #e7dec7">'.$model->text.'</div>';
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
