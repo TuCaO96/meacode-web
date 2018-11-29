@@ -16,6 +16,7 @@ class m180831_132005_create_suggestions_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'title' => $this->string(),
+            'email' => $this->string(),
             'text' => $this->text(),
             'created_at' => $this->integer()->NotNull(),
             'updated_at' => $this->integer()->notNull(),

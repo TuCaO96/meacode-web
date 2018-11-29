@@ -11,6 +11,7 @@ use Yii;
  * @property int $user_id
  * @property string $title
  * @property string $text
+ * @property string $email
  * @property int $created_at
  * @property int $updated_at
  *
@@ -29,7 +30,7 @@ class Suggestions extends \yii\db\ActiveRecord
     public function fields()
     {
         return [
-            'id', 'title', 'text', 'user'
+            'id', 'title', 'text', 'user', 'email'
         ];
     }
 
@@ -39,7 +40,7 @@ class Suggestions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['text'], 'string'],
+            [['text', 'email'], 'string'],
             [['title', 'text'], 'required'],
             [['user_id'], 'default', 'value' => null],
             [['title'], 'string', 'max' => 255],
@@ -56,6 +57,7 @@ class Suggestions extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
             'title' => Yii::t('app', 'Title'),
+            'email' => Yii::t('app', 'Email'),
             'text' => Yii::t('app', 'Text'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
