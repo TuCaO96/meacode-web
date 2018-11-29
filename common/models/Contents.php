@@ -18,9 +18,6 @@ use Yii;
  *
  * @property Courses $course
  * @property Users $user
- * @property ContentsAttaches[] $contentsAttaches
- * @property ContentRating[] $ratings
- * @property Attaches[] $attaches
  */
 class Contents extends \yii\db\ActiveRecord
 {
@@ -39,8 +36,6 @@ class Contents extends \yii\db\ActiveRecord
             'title',
             'text',
             'user',
-            'attaches',
-            'ratings'
         ];
     }
 
@@ -97,25 +92,9 @@ class Contents extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getContentsAttaches()
-    {
-        return $this->hasMany(ContentsAttaches::className(), ['contents_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getRatings()
     {
         return $this->hasMany(ContentRating::className(), ['content_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAttaches()
-    {
-        return $this->hasMany(Attaches::className(), ['id' => 'attaches_id'])->viaTable('contents_attaches', ['contents_id' => 'id']);
     }
 
     /**

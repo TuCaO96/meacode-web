@@ -12,8 +12,6 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  *
- * @property CategoriesAttaches[] $categoriesAttaches
- * @property Attaches[] $attaches
  * @property Courses[] $courses
  */
 class Categories extends \yii\db\ActiveRecord
@@ -30,8 +28,7 @@ class Categories extends \yii\db\ActiveRecord
     {
         return [
             'id',
-            'name',
-            'attaches'
+            'name'
         ];
     }
 
@@ -59,22 +56,6 @@ class Categories extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategoriesAttaches()
-    {
-        return $this->hasMany(CategoriesAttaches::className(), ['categories_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAttaches()
-    {
-        return $this->hasMany(Attaches::className(), ['id' => 'attaches_id'])->viaTable('categories_attaches', ['categories_id' => 'id']);
     }
 
     /**

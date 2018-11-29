@@ -15,8 +15,6 @@ use Yii;
  * @property int $updated_at
  *
  * @property Users $user
- * @property SuggestionsAttaches[] $suggestionsAttaches
- * @property Attaches[] $attaches
  */
 class Suggestions extends \yii\db\ActiveRecord
 {
@@ -62,22 +60,6 @@ class Suggestions extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSuggestionsAttaches()
-    {
-        return $this->hasMany(SuggestionsAttaches::className(), ['suggestions_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAttaches()
-    {
-        return $this->hasMany(Attaches::className(), ['id' => 'attaches_id'])->viaTable('suggestions_attaches', ['suggestions_id' => 'id']);
     }
 
     public function getUser()
