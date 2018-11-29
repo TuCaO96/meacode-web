@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Responder', '#', [
                 'class' => 'btn btn-primary',
+                'id' => 'btn-reply',
                 'data-toggle' => 'modal',
                 'data-target' => '#replyModal'
             ]
@@ -86,6 +87,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script>
+    $(document).ready(function () {
+        <? if(is_null($model->email) || strlen($model->email) < 1): ?>
+        $('#btn-reply').addClass('disabled');
+        <? endif; ?>
+    });
+
     function sendReply() {
         var message = $('#replyMessage').val();
         var email = '<?= $model->email ?>';
