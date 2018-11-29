@@ -70,6 +70,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                 </div>
+                <div hidden id="loadingBarRow" class="row">
+                    <div class="col-md-12">
+                        <span class="alert alert-info">
+                            <i class="fa fa-2x fa-spinner fa-spin"></i>Carregando...
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -84,15 +91,19 @@ $this->params['breadcrumbs'][] = $this->title;
         var email = '<?= $model->email ?>';
         var suggestion_text = '<?= $model->text ?>';
 
+        $('#loadingBarRow').show();
+
         $.post('https://meacodeapp.com.br/api/web/suggestions/send_reply',
             {
                 email: email,
                 message: message,
                 suggestion_text: suggestion_text
             }).then(function onSuccess(data) {
+            $('#loadingBar').hide();
                 alert('Resposta enviada com sucesso!');
                 $('#replyModal').modal('hide');
             }, function onError(error) {
+            $('#loadingBar').hide();
                 alert('Erro ao enviar resposta ao usuário :(');
                 console.error(JSON.stringify(error, null, 4));
             })
