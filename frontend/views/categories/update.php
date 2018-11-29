@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Categories */
 
-$this->title = Yii::t('app', 'Update Categories: ' . $model->name, [
+$this->title = Yii::t('app', 'Atualizar Categorias: ' . $model->name, [
     'nameAttribute' => '' . $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categories'), 'url' => ['index']];

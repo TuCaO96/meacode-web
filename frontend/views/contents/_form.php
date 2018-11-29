@@ -17,21 +17,25 @@ if($errors !== null){
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true])
+        ->label('Título')?>
 
     <?= $form->field($model, 'text')->widget(\yii\redactor\widgets\Redactor::className(), [
         'clientOptions' => [
             'imageUpload' => \yii\helpers\Url::to(['/redactor/upload/image']),
         ],
-    ]) ?>
+    ])->label('Texto') ?>
 
-    <?= $form->field($model, 'paid')->dropDownList([false => 'Não', true => 'Sim']) ?>
+    <?= $form->field($model, 'paid')->dropDownList([false => 'Não', true => 'Sim'])
+        ->label('Pago?')?>
 
     <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
-        ['prompt' => Yii::t('app', 'Select an user')]) ?>
+        ['prompt' => Yii::t('app', 'Select an user')])
+        ->label('Usuário')?>
 
     <?= $form->field($model, 'course_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Courses::find()->all(), 'id', 'name'),
-        ['prompt' => Yii::t('app', 'Select a course')]) ?>
+        ['prompt' => Yii::t('app', 'Select a course')])
+        ->label('Curso')?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

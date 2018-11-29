@@ -16,9 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Suggestions'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,10 +29,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'title',
-                'label' => 'Title'
+                'label' => 'Título'
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width: 8.7%'],
+                'buttons'=>[
+                    'view' => function ($url, $model) {
+                        $t = 'index.php?r=suggestions/view&id='.$model->id;
+                        return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', $t);
+                    },
+                    'update' => function ($url, $model) {
+                        return '';
+                    }
+                ],
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
