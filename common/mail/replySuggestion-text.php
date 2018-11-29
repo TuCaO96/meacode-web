@@ -9,9 +9,9 @@ Olá!
 
 Você nos sugeriu:
 
-<?= $suggestion_text ?>
+****<?= $suggestion_text ?>****
 
 Em resposta a sua sugestão, olha o que nossa equipe diz:
 
-<?= $message ?>
+****<?= $message ?>****
 
