@@ -48,7 +48,7 @@ class SuggestionsController extends ActiveController
                 ['html' => 'replySuggestion-html', 'text' => 'replySuggestion-text'],
                 ['suggestion_text' => $suggestion_text, 'message' => $message, 'email' => $email]
             )
-            ->setFrom([\Yii::$app->params['supportEmail'] => 'Sistema ' . \Yii::$app->name])
+            ->setFrom([\Yii::$app->params['supportEmail'] => 'Sistema Me Acode'])
             ->setTo($email)
             ->setSubject('Respondemos sua sugestão de conteúdo!')
             ->send();
