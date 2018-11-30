@@ -18,10 +18,10 @@ if($errors !== null){
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
-        ['prompt' => Yii::t('app', 'Select an user')]) ?>
+        ['prompt' => Yii::t('app', 'Selecione um usuário')]) ?>
 
     <?= $form->field($model, 'content_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Contents::find()->all(), 'id', 'title'),
-        ['prompt' => Yii::t('app', 'Select a content')]) ?>
+        ['prompt' => Yii::t('app', 'Selecione um conteúdo')]) ?>
 
     <?= $form->field($model, 'score')->textInput() ?>
 

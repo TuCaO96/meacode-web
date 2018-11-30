@@ -30,11 +30,11 @@ if($errors !== null){
         ->label('Pago?')?>
 
     <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
-        ['prompt' => Yii::t('app', 'Select an user')])
+        ['prompt' => Yii::t('app', 'Selecione um usuário')])
         ->label('Usuário')?>
 
     <?= $form->field($model, 'course_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Courses::find()->all(), 'id', 'name'),
-        ['prompt' => Yii::t('app', 'Select a course')])
+        ['prompt' => Yii::t('app', 'Selecione um curso')])
         ->label('Curso')?>
 
     <div class="form-group">

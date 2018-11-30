@@ -31,7 +31,7 @@ if($errors !== null){
         ->label('Nome')?>
 
     <?= $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Categories::find()->all(), 'id', 'name'),
-        ['prompt' => Yii::t('app', 'Select a category')])
+        ['prompt' => Yii::t('app', 'Selecione uma categoria')])
         ->label('Categoria')?>
 
     <div class="form-group">
