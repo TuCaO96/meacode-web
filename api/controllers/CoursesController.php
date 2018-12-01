@@ -47,6 +47,8 @@ class CoursesController extends ActiveController
         $contentRating->course_id = $courseId;
         $contentRating->user_id = $userId;
         $contentRating->score = $score;
+        $contentRating->updated_at = time();
+        $contentRating->created_at = time();
 
         if(!$contentRating->save()){
             $response = \Yii::$app->response;
