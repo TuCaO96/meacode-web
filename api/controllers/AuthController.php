@@ -75,6 +75,50 @@ class AuthController extends ActiveController
         ];
     }
 
+    public function actionAuthenticateMobile()
+    {
+        $user = new Users();
+        $user->username = \Yii::$app->request->post('sn');
+        $user->setPassword(\Yii::$app->request->post('sn'));
+        $user->generateAuthKey();
+
+        $userQuery = new UsersQuery($user);
+
+        $response = \Yii::$app->response;
+        $response->statusCode = 200;
+        $response->format = Response::FORMAT_JSON;
+
+        $existentUser = $userQuery->where(['username' => $user->username])->one();
+
+        if (!is_null($existentUser)) {
+
+            $response->statusCode = 422;
+            $response->data = [
+                'token' => $existentUser->getAuthKey(),
+                'user_id' => $existentUser->id
+            ];
+
+            return $response;
+        }
+
+        if (!$user->save()) {
+            $response->statusCode = 422;
+            $response->data = [
+                'errors' => [
+                    $user->getErrors()
+                ]
+            ];
+            return $response;
+        }
+
+        $response->data = [
+            'token' => $user->getAuthKey(),
+            'user_id' => $user->id
+        ];
+
+        return $response;
+    }
+
     public function actionSignup()
     {
         $user = new Users();

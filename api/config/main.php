@@ -95,6 +95,7 @@ return [
                     'extraPatterns' => [
                         'POST login' => 'login',
                         'POST social_login' => 'social-login',
+                        'POST mobilr' => 'authenticate-mobile',
                         'POST signup' => 'signup'
                     ]
                 ]
