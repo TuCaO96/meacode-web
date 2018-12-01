@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $courses \common\models\Courses[] */
 
-$this->title = Yii::t('app', 'Conteúdos mais curtidos');
+$this->title = Yii::t('app', 'Cursos mais curtidos');
 $this->params['breadcrumbs'][] = $this->title;
 
 $ratings = \common\models\CourseRating::find()->select(['courses.name AS rating_title, avg(score) AS rating',])

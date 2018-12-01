@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= $rating->rating_title; ?>
                         </td>
                         <td>
-                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?>
+                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?> %
                         </td>
                     </tr>
                 <?php endforeach; ?>
