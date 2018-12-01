@@ -61,10 +61,12 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'courses',
                     'extraPatterns' => [
-                        'POST rate' => 'rate-course'
+                        'POST rate' => 'rate-course',
+                        'GET categories/{category_id}' => 'get-by-category'
                     ],
                     'tokens' => [
-                        '{id}' => '<id:\\w+>'
+                        '{id}' => '<id:\\w+>',
+                        '{category_id}' => '<id:\\w+>'
                     ]
                 ],
                 [

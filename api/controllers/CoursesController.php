@@ -5,6 +5,7 @@ namespace api\controllers;
 use common\models\ContentRating;
 use common\models\ContentRatingQuery;
 use common\models\CourseRating;
+use common\models\Courses;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\ContentNegotiator;
@@ -39,6 +40,20 @@ class CoursesController extends ActiveController
         ];
     }
 
+    public function actionGetByCategory()
+    {
+        $category_id = \Yii::$app->request->get('category_id');
+
+        $response = \Yii::$app->response;
+        $response->data = [
+            'courses' => Courses::find()->where(['category_id' => $category_id])->all()
+        ];
+        $response->statusCode = 200;
+
+        return $response;
+
+    }
+    
     public function actionRateCourse()
     {
         $score = \Yii::$app->request->post('liked');
