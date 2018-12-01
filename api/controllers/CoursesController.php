@@ -69,7 +69,7 @@ class CoursesController extends ActiveController
         $contentRating->updated_at = time();
         $contentRating->created_at = time();
 
-        $contentQuery = CourseRating::where(['course_id' => $courseId, 'user_id' => $userId])->one();
+        $contentQuery = CourseRating::find()->where(['course_id' => $courseId, 'user_id' => $userId])->one();
 
         $response = \Yii::$app->response;
 
