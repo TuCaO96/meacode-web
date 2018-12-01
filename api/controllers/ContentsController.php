@@ -50,8 +50,19 @@ class ContentsController extends ActiveController
         $contentRating->updated_at = time();
         $contentRating->created_at = time();
 
+        $contentQuery = ContentRating::where(['course_id' => $contentId, 'user_id' => $userId])->one();
+
+        $response = \Yii::$app->response;
+
+        if (!is_null($contentQuery)) {
+            $response->data = [
+                'content' => $contentQuery->getContent()->one()
+            ];
+
+            return $response;
+        }
+
         if(!$contentRating->save()){
-            $response = \Yii::$app->response;
             $response->data = [
                 'error' => $contentRating->getErrors()
             ];
