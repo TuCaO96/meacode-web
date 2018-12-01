@@ -2,9 +2,10 @@
 
 namespace api\controllers;
 
+use common\models\CourseRating;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
-use yii\filters\ContentNegotiator;
+use yii\filters\CourseNegotiator;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
 use yii\rest\ActiveController;
@@ -18,7 +19,7 @@ class CoursesController extends ActiveController
     {
         return [
             'contentNegotiator' => [
-                'class' => ContentNegotiator::className(),
+                'class' => CourseNegotiator::className(),
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                 ],
@@ -34,6 +35,19 @@ class CoursesController extends ActiveController
                 'class' => RateLimiter::className(),
             ],
         ];
+    }
+
+    public function actionRateCourse()
+    {
+        $score = \Yii::$app->request->post('liked') ? 5 : 1;
+        $userId = \Yii::$app->request->post('user_id');
+        $courseId = \Yii::$app->request->post('course_id');
+
+        $contentRating = new CourseRating();
+        $contentRating->course_id = $courseId;
+        $contentRating->user_id = $userId;
+        $contentRating->score = $score;
+        $contentRating->save();
     }
 
 }

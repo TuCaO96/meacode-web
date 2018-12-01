@@ -4,16 +4,16 @@ namespace frontend\controllers;
 
 use common\models\Courses;
 use Yii;
-use common\models\ContentRating;
-use frontend\models\search\ContentRating as ContentRatingSearch;
+use common\models\CourseRating;
+use frontend\models\search\CourseRating as CourseRatingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ContentsRatingsController implements the CRUD actions for ContentRating model.
+ * CoursesRatingsController implements the CRUD actions for CourseRating model.
  */
-class ContentsRatingsController extends Controller
+class CoursesRatingsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,7 +31,7 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Lists all ContentRating models.
+     * Lists all CourseRating models.
      * @return mixed
      */
     public function actionIndex()
@@ -45,15 +45,15 @@ class ContentsRatingsController extends Controller
     }
 
     /**
-     * Finds the ContentRating model based on its primary key value.
+     * Finds the CourseRating model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ContentRating the loaded model
+     * @return CourseRating the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ContentRating::findOne($id)) !== null) {
+        if (($model = CourseRating::findOne($id)) !== null) {
             return $model;
         }
 

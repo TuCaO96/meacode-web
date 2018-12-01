@@ -45,6 +45,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Conteúdos', 'url' => ['/contents']];
         $menuItems[] = ['label' => 'Sugestões', 'url' => ['/suggestions']];
         $menuItems[] = ['label' => 'Termos mais buscados', 'url' => ['/user-searches']];
+        $menuItems[] = ['label' => 'Conteúdos mais curtidos', 'url' => ['/contents-ratings']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

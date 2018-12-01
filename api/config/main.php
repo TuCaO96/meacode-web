@@ -60,6 +60,9 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'courses',
+                    'extraPatterns' => [
+                        'POST rate' => 'rate-course'
+                    ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
                     ]
