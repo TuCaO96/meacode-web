@@ -48,6 +48,16 @@ class ContentsController extends ActiveController
         $contentRating->user_id = $userId;
         $contentRating->score = $score;
         $contentRating->save();
+
+        $response = \Yii::$app->response;
+        $response->data = [
+            'content' => $contentRating->getContent()
+        ];
+        $response->statusCode = 200;
+        $response->format = Response::FORMAT_JSON;
+
+
+        return $response;
     }
     
 }
