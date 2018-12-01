@@ -5,7 +5,7 @@ namespace api\controllers;
 use common\models\CourseRating;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
-use yii\filters\CourseNegotiator;
+use yii\filters\ContentNegotiator;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
 use yii\rest\ActiveController;
@@ -19,7 +19,7 @@ class CoursesController extends ActiveController
     {
         return [
             'contentNegotiator' => [
-                'class' => CourseNegotiator::className(),
+                'class' => ContentNegotiator::className(),
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                 ],
