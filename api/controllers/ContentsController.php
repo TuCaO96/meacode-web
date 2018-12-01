@@ -37,7 +37,7 @@ class ContentsController extends ActiveController
         ];
     }
 
-    public function actionRateCourse()
+    public function actionRateContent()
     {
         $score = \Yii::$app->request->post('liked');
         $userId = \Yii::$app->request->post('user_id');
