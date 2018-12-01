@@ -47,7 +47,17 @@ class CoursesController extends ActiveController
         $contentRating->course_id = $courseId;
         $contentRating->user_id = $userId;
         $contentRating->score = $score;
-        $contentRating->save();
+
+        if(!$contentRating->save()){
+            $response = \Yii::$app->response;
+            $response->data = [
+                'error' => $contentRating->getErrors()
+            ];
+            $response->statusCode = 200;
+            $response->format = Response::FORMAT_JSON;
+
+            return $response;
+        }
 
         $response = \Yii::$app->response;
         $response->data = [
