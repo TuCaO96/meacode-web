@@ -84,6 +84,9 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'contents',
+                    'extraPatterns' => [
+                        'POST rate' => 'rate-content'
+                    ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
                     ]

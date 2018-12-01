@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use common\models\ContentRating;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\ContentNegotiator;
@@ -36,4 +37,17 @@ class ContentsController extends ActiveController
         ];
     }
 
+    public function actionRateContent()
+    {
+        $score = \Yii::$app->request->post('liked') ? 5 : 0;
+        $userId = \Yii::$app->request->post('user_id');
+        $contentId = \Yii::$app->request->post('content_id');
+
+        $contentRating = new ContentRating();
+        $contentRating->content_id = $contentId;
+        $contentRating->user_id = $userId;
+        $contentRating->score = $score;
+        $contentRating->save();
+    }
+    
 }

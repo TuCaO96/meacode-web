@@ -18,6 +18,7 @@ use Yii;
  *
  * @property Courses $course
  * @property Users $user
+ * @property ContentRating[] $ratings
  */
 class Contents extends \yii\db\ActiveRecord
 {
@@ -36,7 +37,17 @@ class Contents extends \yii\db\ActiveRecord
             'title',
             'text',
             'user',
+            'ratings'
         ];
+    }
+
+    public function attributes()
+    {
+        $attributes = parent::attributes();
+        $attributes[] = 'rating';
+        $attributes[] = 'rating_title';
+
+        return $attributes;
     }
 
     /**
