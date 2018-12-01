@@ -91,8 +91,6 @@ class AuthController extends ActiveController
         $existentUser = $userQuery->where(['username' => $user->username])->one();
 
         if (!is_null($existentUser)) {
-
-            $response->statusCode = 422;
             $response->data = [
                 'token' => $existentUser->getAuthKey(),
                 'user_id' => $existentUser->id
