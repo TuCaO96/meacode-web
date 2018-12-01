@@ -41,15 +41,6 @@ class Contents extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributes()
-    {
-        $attributes = parent::attributes();
-        $attributes[] = 'rating';
-        $attributes[] = 'rating_title';
-
-        return $attributes;
-    }
-
     /**
      * {@inheritdoc}
      */

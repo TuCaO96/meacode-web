@@ -27,6 +27,17 @@ class ContentRating extends \yii\db\ActiveRecord
         return 'content_rating';
     }
 
+
+
+    public function attributes()
+    {
+        $attributes = parent::attributes();
+        $attributes[] = 'rating';
+        $attributes[] = 'rating_title';
+
+        return $attributes;
+    }
+
     /**
      * {@inheritdoc}
      */
