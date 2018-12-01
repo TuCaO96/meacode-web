@@ -11,6 +11,7 @@ use Yii;
  * @property int $user_id
  * @property int $course_id
  * @property int $score
+ * @property string $comments
  * @property int $created_at
  * @property int $updated_at
  *
@@ -36,6 +37,7 @@ class CourseRating extends \yii\db\ActiveRecord
             [['user_id', 'course_id', 'score', 'created_at', 'updated_at'], 'required'],
             [['user_id', 'course_id', 'score', 'created_at', 'updated_at'], 'default', 'value' => null],
             [['user_id', 'course_id', 'score', 'created_at', 'updated_at'], 'integer'],
+            [['comments'], 'string'],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Courses::className(), 'targetAttribute' => ['course_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -51,6 +53,7 @@ class CourseRating extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
             'course_id' => Yii::t('app', 'Course ID'),
             'score' => Yii::t('app', 'Score'),
+            'comments' => Yii::t('app', 'Comments'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

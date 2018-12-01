@@ -44,11 +44,13 @@ class CoursesController extends ActiveController
         $score = \Yii::$app->request->post('liked');
         $userId = \Yii::$app->request->post('user_id');
         $courseId = \Yii::$app->request->post('course_id');
+        $comments = \Yii::$app->request->post('comments');
 
         $contentRating = new CourseRating();
         $contentRating->course_id = $courseId;
         $contentRating->user_id = $userId;
         $contentRating->score = $score;
+        $contentRating->comments = $comments;
         $contentRating->updated_at = time();
         $contentRating->created_at = time();
 
