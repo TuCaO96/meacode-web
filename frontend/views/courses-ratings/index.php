@@ -40,7 +40,7 @@ $ratings = \common\models\CourseRating::find()->select(['courses.name AS rating_
                             <?= $rating->rating_title; ?>
                         </td>
                         <td>
-                            <?= $rating->rating; ?>
+                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
