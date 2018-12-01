@@ -36,12 +36,7 @@ class CoursesRatingsController extends Controller
      */
     public function actionIndex()
     {
-
-        $courses = Courses::find()->all();
-
-        return $this->render('index', [
-            'courses' => $courses,
-        ]);
+        return $this->render('index');
     }
 
     /**
