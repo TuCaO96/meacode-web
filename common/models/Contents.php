@@ -37,7 +37,8 @@ class Contents extends \yii\db\ActiveRecord
             'title',
             'text',
             'user',
-            'ratings'
+            'ratings',
+            'course'
         ];
     }
 
