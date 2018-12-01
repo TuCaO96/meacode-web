@@ -44,6 +44,12 @@ class CoursesController extends ActiveController
     {
         $category_id = \Yii::$app->request->get('category_id');
 
+        echo $category_id;
+
+        echo '<pre>';
+        print_r(Courses::find()->where(['category_id' => $category_id])->sql);
+        die();
+
         $response = \Yii::$app->response;
         $response->data = [
             'courses' => Courses::find()->where(['category_id' => $category_id])->all()
