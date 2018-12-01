@@ -54,13 +54,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php foreach ($ratings as $i => $rating): ?>
                     <tr>
                         <td>
-                            <?= $rating + 1 ?>
+                            <?= $i + 1 ?>
                         </td>
                         <td>
                             <?= $rating->rating_title; ?>
                         </td>
                         <td>
-                            <?= $rating->rating; ?>
+                            <?= number_format(($rating->rating * 20), ',', '.'); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
