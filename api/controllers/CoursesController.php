@@ -44,7 +44,7 @@ class CoursesController extends ActiveController
     {
         $category_id = \Yii::$app->request->get('category_id');
 
-        echo $category_id;
+        print_r($category_id);
 
         echo '<pre>';
         print_r(Courses::find()->where(['category_id' => $category_id])->sql);
