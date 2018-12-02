@@ -62,8 +62,20 @@ class SuggestionsController extends ActiveController
         $suggestion->created_at = $created_at;
         $suggestion->updated_at = $updated_at;
 
+        $response = \Yii::$app->response;
+
+        if (!$suggestion->save()) {
+            $response->data = [
+                'errors' => $suggestion->getErrors()
+            ];
+            $response->format = Response::FORMAT_JSON;
+            $response->statusCode = 422;
+
+            return $response;
+        }
+
         if (!is_null($email)) {
-            return \Yii::$app
+            \Yii::$app
                 ->mailer
                 ->compose(
                     ['html' => 'suggestion-html', 'text' => 'suggestion-text'],
@@ -75,6 +87,13 @@ class SuggestionsController extends ActiveController
                 ->send();
         }
 
+        $response->data = [
+            'suggestion' => $suggestion
+        ];
+        $response->format = Response::FORMAT_JSON;
+        $response->statusCode = 200;
+
+        return $response;
     }
 
     public function actionSendReply()
