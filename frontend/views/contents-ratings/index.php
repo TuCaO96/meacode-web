@@ -53,9 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ->where('courses.id = ' . $_GET['courseId']);
         $ratings = $ratingsLeft->union($ratingsRight)
             ->groupBy('contents.id')
-            ->orderBy(["rating" => SORT_DESC])
         ->all();
-    ?>
+
+        \yii\helpers\ArrayHelper::multisort($ratings, 'rating', SORT_DESC);
+
+        ?>
         <div class="row" style="margin-top: 15px">
         <div class="col-md-12">
             <table class="table table-responsive table-bordered">

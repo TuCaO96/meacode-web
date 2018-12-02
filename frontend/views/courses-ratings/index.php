@@ -19,7 +19,6 @@ $ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_
     ->join('RIGHT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratings = $ratingsLeft->union($ratingsRight)
     ->groupBy('courses.id')
-    ->orderBy(['rating' => SORT_DESC])
     ->all();
 
 \yii\helpers\ArrayHelper::multisort($ratings, 'rating', SORT_DESC);
