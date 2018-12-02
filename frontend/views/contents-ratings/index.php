@@ -15,32 +15,42 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <form action="index.php" method="get">
-        <div class="row form-group">
-            <label>Listar conteúdos por curso</label>
-            <select name="courseId" class="form-control">
-                <option <?= isset($_GET['courseId']) ? '' : 'selected' ?> disabled>Selecione um curso</option>
-                <?php foreach ($courses as $course): ?>
-                    <option <?= isset($_GET['courseId']) && $_GET['courseId'] == $course->id ? 'selected' : '' ?>
-                            value="<?= $course->id ?>"><?= $course->name ?></option>
-                <?php endforeach; ?>
-            </select>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" name="r" value="contents-ratings">
+                <label>Listar conteúdos por curso</label>
+            </div>
         </div>
 
-        <div class="row form-group">
-            <button type="submit" class="btn btn-primary">Listar</button>
+        <div class="row">
+            <div class="col-md-12">
+                <select name="courseId" class="form-control">
+                    <option <?= isset($_GET['courseId']) ? '' : 'selected' ?> disabled>Selecione um curso</option>
+                    <?php foreach ($courses as $course): ?>
+                        <option <?= isset($_GET['courseId']) && $_GET['courseId'] == $course->id ? 'selected' : '' ?>
+                                value="<?= $course->id ?>"><?= $course->name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Listar</button>
+            </div>
         </div>
     </form>
 
     <?php if(isset($_GET['courseId'])):
 
-    $ratings = \common\models\ContentRating::find()->select(['contents.title AS rating_title, avg(score) AS rating',])
-        ->join('JOIN', 'contents', 'contents.id = content_id')
-        ->leftJoin('courses', 'contents.course_id = '. $_GET['courseId'])
-        ->groupBy('content_id')
-        ->orderBy(['avg(score)' => SORT_DESC])
+        $ratings = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
+            ->join('JOIN', 'content_rating', 'content_rating.content_id = contents.id')
+            ->leftJoin('courses', 'course_id = ' . $_GET['courseId'])
+            ->groupBy('contents.id')
+            ->orderBy(["rating" => SORT_DESC])
         ->all();
     ?>
-    <div class="row">
+        <div class="row" style="margin-top: 15px">
         <div class="col-md-12">
             <table class="table table-responsive table-bordered">
                 <thead>

@@ -9,10 +9,10 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Cursos mais curtidos');
 $this->params['breadcrumbs'][] = $this->title;
 
-$ratings = \common\models\CourseRating::find()->select(['courses.name AS rating_title, avg(score) AS rating',])
-    ->join('JOIN', 'courses', 'courses.id = course_id')
-    ->groupBy('course_id')
-    ->orderBy(['avg(score)' => SORT_DESC])
+$ratings = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
+    ->join('JOIN', 'course_rating', 'course_rating.course_id = courses.id')
+    ->groupBy('courses.id')
+    ->orderBy(['avg(course_rating.score)' => SORT_DESC])
     ->all();
 
 ?>
@@ -40,7 +40,7 @@ $ratings = \common\models\CourseRating::find()->select(['courses.name AS rating_
                             <?= $rating->rating_title; ?>
                         </td>
                         <td>
-                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?>
+                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?> %
                         </td>
                     </tr>
                 <?php endforeach; ?>

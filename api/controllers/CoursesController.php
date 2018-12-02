@@ -42,11 +42,15 @@ class CoursesController extends ActiveController
 
     public function actionGetByCategory()
     {
-        $category_id = \Yii::$app->request->get('id');
+        $course_id = \Yii::$app->request->get('id');
+        $category_id = \Yii::$app->request->get('category_id');
 
         $response = \Yii::$app->response;
         $response->data = [
-            'courses' => Courses::find()->where(['category_id' => $category_id])->all()
+            'courses' => Courses::find()
+                ->where(['category_id' => $category_id])
+                ->where(['<>', 'id', $course_id])
+                ->all()
         ];
         $response->statusCode = 200;
 
