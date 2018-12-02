@@ -12,7 +12,7 @@
 
     <p>Título: </p>
 
-    <p>"<i><?= $suggestion_text ?></i>"</p>
+    <p>"<i><?= $title ?></i>"</p>
 
     <hr>
 
