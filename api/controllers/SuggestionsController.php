@@ -83,7 +83,7 @@ class SuggestionsController extends ActiveController
                 )
                 ->setFrom([\Yii::$app->params['supportEmail'] => 'Sistema Me Acode'])
                 ->setTo($email)
-                ->setSubject('Respondemos sua sugestão de conteúdo!')
+                ->setSubject('Recebemos sua sugestão!')
                 ->send();
         }
 
@@ -110,7 +110,7 @@ class SuggestionsController extends ActiveController
             )
             ->setFrom([\Yii::$app->params['supportEmail'] => 'Sistema Me Acode'])
             ->setTo($email)
-            ->setSubject('Respondemos sua sugestão de conteúdo!')
+            ->setSubject('Respondemos sua sugestão!')
             ->send();
     }
 
