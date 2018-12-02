@@ -23,7 +23,7 @@ $ratings = $ratingsLeft->union($ratingsRight)
     ->all();
 
 echo '<pre>';
-var_dump($ratings);
+var_dump($ratingsLeft->groupBy('courses.id')->all());
 die();
 
 ?>
