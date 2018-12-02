@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use common\models\Suggestions;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\ContentNegotiator;
@@ -36,6 +37,46 @@ class SuggestionsController extends ActiveController
         ];
     }
 
+    public function actions()
+    {
+        $actions = parent::actions();
+        unset($actions['create']);
+        return $actions;
+    }
+
+    public function actionCreate()
+    {
+        // implement here your code
+        $email = \Yii::$app->request->post('email');
+        $title = \Yii::$app->request->post('title');
+        $text = \Yii::$app->request->post('text');
+        $user_id = \Yii::$app->request->post('user_id');
+        $created_at = time();
+        $updated_at = time();
+
+        $suggestion = new Suggestions();
+        $suggestion->user_id = $user_id;
+        $suggestion->title = $title;
+        $suggestion->text = $text;
+        $suggestion->email = $email;
+        $suggestion->created_at = $created_at;
+        $suggestion->updated_at = $updated_at;
+
+        if (!is_null($email)) {
+            return \Yii::$app
+                ->mailer
+                ->compose(
+                    ['html' => 'suggestion-html', 'text' => 'suggestion-text'],
+                    ['title' => $title, 'message' => $text, 'email' => $email]
+                )
+                ->setFrom([\Yii::$app->params['supportEmail'] => 'Sistema Me Acode'])
+                ->setTo($email)
+                ->setSubject('Respondemos sua sugestão de conteúdo!')
+                ->send();
+        }
+
+    }
+
     public function actionSendReply()
     {
         $email = \Yii::$app->request->post('email');
@@ -53,5 +94,5 @@ class SuggestionsController extends ActiveController
             ->setSubject('Respondemos sua sugestão de conteúdo!')
             ->send();
     }
-    
+
 }
