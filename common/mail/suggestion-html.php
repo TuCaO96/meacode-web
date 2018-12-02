@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $suggestion_text string */
+/* @var $title string */
 /* @var $message string */
 
 ?>
