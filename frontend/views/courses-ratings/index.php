@@ -15,7 +15,7 @@ $ratings = \common\models\Courses::find()->select(['courses.name AS rating_title
     ->orderBy(['avg(course_rating.score)' => SORT_DESC])
     ->sql;
 
-echo $ratings;
+var_dump($ratings);
 die();
 
 ?>
