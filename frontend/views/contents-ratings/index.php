@@ -43,9 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if(isset($_GET['courseId'])):
 
-        $ratings = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
-            ->join('FULL OUTER JOIN', 'content_rating', 'content_rating.content_id = contents.id')
-            ->leftJoin('courses', 'course_id = ' . $_GET['courseId'])
+        $ratingsLeft = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
+            ->join('LEFT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
+            ->leftJoin('courses', 'course_id = ' . $_GET['courseId']);
+        $ratingsRight = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
+            ->join('RIGHT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
+            ->leftJoin('courses', 'course_id = ' . $_GET['courseId']);
+        $ratings = $ratingsLeft->union($ratingsRight)
             ->groupBy('contents.id')
             ->orderBy(["rating" => SORT_DESC])
         ->all();
