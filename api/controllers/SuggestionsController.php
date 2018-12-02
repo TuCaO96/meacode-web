@@ -91,7 +91,7 @@ class SuggestionsController extends ActiveController
             'suggestion' => $suggestion
         ];
         $response->format = Response::FORMAT_JSON;
-        $response->statusCode = 200;
+        $response->statusCode = 201;
 
         return $response;
     }
