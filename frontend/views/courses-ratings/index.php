@@ -9,6 +9,10 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Cursos mais curtidos');
 $this->params['breadcrumbs'][] = $this->title;
 
+echo '<pre>';
+var_dump(\common\models\CourseRating::find()->all());
+die();
+
 $ratingsLeft = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
     ->join('LEFT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
