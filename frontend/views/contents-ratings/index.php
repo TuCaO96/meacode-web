@@ -55,10 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ->groupBy('contents.id')
             ->orderBy(["rating" => SORT_DESC])
         ->all();
-
-        echo '<pre>';
-        var_dump($ratings);
-        die();
     ?>
         <div class="row" style="margin-top: 15px">
         <div class="col-md-12">
