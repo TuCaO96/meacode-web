@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $ratingsLeft = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
     ->join('LEFT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
-    ->join('LEFT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
+    ->join('RIGHT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratings = $ratingsLeft->union($ratingsRight)
     ->groupBy('courses.id')
     ->orderBy(['avg(course_rating.score)' => SORT_DESC])
