@@ -13,18 +13,14 @@ $this->params['breadcrumbs'][] = $this->title;
 var_dump(\common\models\CourseRating::find()->all());
 die();*/
 
-$ratingsLeft = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
+$ratingsLeft = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score) AS rating',])
     ->join('LEFT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
-$ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
+$ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score) AS rating',])
     ->join('RIGHT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratings = $ratingsLeft->union($ratingsRight)
     ->groupBy('courses.id')
     ->orderBy(['avg(course_rating.score)' => SORT_DESC])
     ->all();
-
-echo '<pre>';
-var_dump($ratingsLeft->groupBy('courses.id')->all());
-die();
 
 ?>
 <div class="content-rating-index">
