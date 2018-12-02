@@ -62,11 +62,11 @@ return [
                     'controller' => 'courses',
                     'extraPatterns' => [
                         'POST rate' => 'rate-course',
-                        'GET {id}/categories/{category}' => 'get-by-category'
+                        'GET {id}/categories/{category_id}' => 'get-by-category'
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>',
-                        '{category}' => '<id:\\w+>'
+                        '{category_id}' => '<category_id:\\w+>'
                     ]
                 ],
                 [
