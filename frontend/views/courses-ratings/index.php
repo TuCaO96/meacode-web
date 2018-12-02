@@ -19,7 +19,7 @@ $ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_
     ->join('RIGHT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratings = $ratingsLeft->union($ratingsRight)
     ->groupBy('courses.id')
-    ->orderBy(['rating' => SORT_DESC])
+    ->having('avg(course_rating.score)')
     ->all();
 
 ?>
