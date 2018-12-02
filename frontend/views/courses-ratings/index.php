@@ -22,6 +22,8 @@ $ratings = $ratingsLeft->union($ratingsRight)
     ->orderBy(['rating' => SORT_DESC])
     ->all();
 
+\yii\helpers\ArrayHelper::multisort($ratings, 'rating');
+
 ?>
 <div class="content-rating-index">
 
