@@ -35,17 +35,19 @@ $ratings = $ratingsLeft->union($ratingsRight)
                 </thead>
                 <tbody>
                 <?php foreach ($ratings as $i => $rating): ?>
-                    <tr>
-                        <td>
-                            <?= $i + 1 ?>
-                        </td>
-                        <td>
-                            <?= $rating->rating_title; ?>
-                        </td>
-                        <td>
-                            <?= $rating->rating ? number_format(($rating->rating * 20), 2, ',', '.') . '%' : 'N/A'; ?>
-                        </td>
-                    </tr>
+                    <?php if (!is_null($rating->rating_title)): ?>
+                        <tr>
+                            <td>
+                                <?= $i + 1 ?>
+                            </td>
+                            <td>
+                                <?= $rating->rating_title; ?>
+                            </td>
+                            <td>
+                                <?= $rating->rating ? number_format(($rating->rating * 20), 2, ',', '.') . '%' : 'N/A'; ?>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
                 </tbody>
             </table>
