@@ -22,7 +22,7 @@ $ratings = $ratingsLeft->union($ratingsRight)
     ->orderBy(['rating' => SORT_DESC])
     ->all();
 
-\yii\helpers\ArrayHelper::multisort($ratings, 'rating');
+\yii\helpers\ArrayHelper::multisort($ratings, 'rating', SORT_DESC);
 
 ?>
 <div class="content-rating-index">
