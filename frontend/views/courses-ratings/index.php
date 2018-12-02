@@ -13,7 +13,10 @@ $ratings = \common\models\Courses::find()->select(['courses.name AS rating_title
     ->join('FULL OUTER JOIN', 'course_rating', 'course_rating.course_id = courses.id')
     ->groupBy('courses.id')
     ->orderBy(['avg(course_rating.score)' => SORT_DESC])
-    ->all();
+    ->sql();
+
+echo $ratings;
+die();
 
 ?>
 <div class="content-rating-index">
