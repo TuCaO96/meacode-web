@@ -43,7 +43,7 @@ class CoursesController extends ActiveController
     public function actionGetByCategory()
     {
         $course_id = \Yii::$app->request->get('id');
-        $category_id = \Yii::$app->request->get('category_id');
+        $category_id = \Yii::$app->request->get('category');
 
         $response = \Yii::$app->response;
         $response->data = [
