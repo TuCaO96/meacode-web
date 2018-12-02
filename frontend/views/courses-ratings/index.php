@@ -10,7 +10,7 @@ $this->title = Yii::t('app', 'Cursos mais curtidos');
 $this->params['breadcrumbs'][] = $this->title;
 
 $ratings = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score)',])
-    ->join('JOIN', 'course_rating', 'course_rating.course_id = courses.id')
+    ->join('FULL OUTER JOIN', 'course_rating', 'course_rating.course_id = courses.id')
     ->groupBy('courses.id')
     ->orderBy(['avg(course_rating.score)' => SORT_DESC])
     ->all();
@@ -34,13 +34,13 @@ $ratings = \common\models\Courses::find()->select(['courses.name AS rating_title
                 <?php foreach ($ratings as $i => $rating): ?>
                     <tr>
                         <td>
-                            <?= $rating + 1 ?>
+                            <?= $i + 1 ?>
                         </td>
                         <td>
                             <?= $rating->rating_title; ?>
                         </td>
                         <td>
-                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?> %
+                            <?= $rating->rating ? number_format(($rating->rating * 20), 2, ',', '.') . '%' : 'N/A'; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

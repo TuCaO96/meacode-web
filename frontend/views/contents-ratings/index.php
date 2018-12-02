@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if(isset($_GET['courseId'])):
 
         $ratings = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
-            ->join('JOIN', 'content_rating', 'content_rating.content_id = contents.id')
+            ->join('FULL OUTER JOIN', 'content_rating', 'content_rating.content_id = contents.id')
             ->leftJoin('courses', 'course_id = ' . $_GET['courseId'])
             ->groupBy('contents.id')
             ->orderBy(["rating" => SORT_DESC])
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= $rating->rating_title; ?>
                         </td>
                         <td>
-                            <?= number_format(($rating->rating * 20), 2, ',', '.'); ?> %
+                            <?= $rating->rating ? number_format(($rating->rating * 20), 2, ',', '.') . '%' : 'N/A'; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
