@@ -49,7 +49,6 @@ class CoursesController extends ActiveController
         $response->data = [
             'courses' => Courses::find()
                 ->where(['category_id' => $category_id])
-                ->andWhere(['<>', 'id', $course_id])
                 ->all()
         ];
         $response->statusCode = 200;
