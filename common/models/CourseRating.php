@@ -59,16 +59,6 @@ class CourseRating extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields()
-    {
-        return [
-            'course',
-            'score',
-            'comments',
-            'user'
-        ];
-    }
-
     /**
      * @return \yii\db\ActiveQuery
      */

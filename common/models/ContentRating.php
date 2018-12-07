@@ -56,15 +56,6 @@ class ContentRating extends \yii\db\ActiveRecord
         ];
     }
 
-    public function fields()
-    {
-        return [
-            'content',
-            'score',
-            'user'
-        ];
-    }
-
     /**
      * @return \yii\db\ActiveQuery
      */
