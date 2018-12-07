@@ -43,7 +43,7 @@ class CoursesController extends ActiveController
     public function actionGetByCategory()
     {
         $course_id = \Yii::$app->request->get('id');
-        $category_id = \Yii::$app->request->get('category_id');
+        $category_id = \Yii::$app->request->get('extra');
 
         $response = \Yii::$app->response;
         $response->data = [
@@ -56,6 +56,23 @@ class CoursesController extends ActiveController
 
         return $response;
 
+    }
+
+    public function actionIsRated()
+    {
+        $user_id = \Yii::$app->request->get('extra');
+        $course_id = \Yii::$app->request->get('id');
+
+        $course_rating = CourseRating::find()->where(['course_id' => $course_id, 'user_id' => $user_id])->one();
+
+        $response = \Yii::$app->response;
+        $response->statusCode = 200;
+        $response->data = [
+            'course_rating' => $course_rating
+        ];
+        $response->format = Response::FORMAT_JSON;
+
+        return $response;
     }
     
     public function actionRateCourse()

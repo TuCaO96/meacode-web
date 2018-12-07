@@ -62,11 +62,12 @@ return [
                     'controller' => 'courses',
                     'extraPatterns' => [
                         'POST rate' => 'rate-course',
-                        'GET {id}/categories/{category_id}' => 'get-by-category'
+                        'GET {id}/categories/{extra}' => 'get-by-category',
+                        'GET {id}/rating/{extra}' => 'is-rated'
                     ],
                     'tokens' => [
                         '{id}' => '<id:\\w+>',
-                        '{category_id}' => '<category_id:\\w+>'
+                        '{extra}' => '<extra:\\w+>'
                     ]
                 ],
                 [
@@ -90,10 +91,12 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'contents',
                     'extraPatterns' => [
-                        'POST rate' => 'rate-content'
+                        'POST rate' => 'rate-content',
+                        'GET {id}/rating/{extra}' => 'is-rated'
                     ],
                     'tokens' => [
-                        '{id}' => '<id:\\w+>'
+                        '{id}' => '<id:\\w+>',
+                        '{extra}' => '<extra:\\w+>'
                     ]
                 ],
                 [

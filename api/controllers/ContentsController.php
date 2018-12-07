@@ -37,6 +37,23 @@ class ContentsController extends ActiveController
         ];
     }
 
+    public function actionIsRated()
+    {
+        $user_id = \Yii::$app->request->get('extra');
+        $content_id = \Yii::$app->request->get('id');
+
+        $content_rating = ContentRating::find()->where(['content_id' => $content_id, 'user_id' => $user_id])->one();
+
+        $response = \Yii::$app->response;
+        $response->statusCode = 200;
+        $response->data = [
+            'content_rating' => $content_rating
+        ];
+        $response->format = Response::FORMAT_JSON;
+
+        return $response;
+    }
+
     public function actionRateContent()
     {
         $score = \Yii::$app->request->post('liked');
