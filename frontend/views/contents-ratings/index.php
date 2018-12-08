@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ->leftJoin('courses', 'course_id = courses.id')
             ->where('courses.id = ' . $_GET['courseId']);
         $ratings = $ratingsLeft->union($ratingsRight)
-            ->groupBy('contents.id')
+            ->groupBy(['contents.id', 'contents.title'])
         ->all();
 
         \yii\helpers\ArrayHelper::multisort($ratings, ['rating', 'qtd'], SORT_DESC);
