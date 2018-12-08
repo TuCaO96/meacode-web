@@ -43,6 +43,7 @@ class Courses extends \yii\db\ActiveRecord
         $attributes = parent::attributes();
         $attributes[] = 'rating';
         $attributes[] = 'rating_title';
+        $attributes[] = 'qtd';
 
         return $attributes;
     }

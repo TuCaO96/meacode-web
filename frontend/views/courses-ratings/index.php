@@ -13,9 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 var_dump(\common\models\CourseRating::find()->all());
 die();*/
 
-$ratingsLeft = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score) AS rating',])
+$ratingsLeft = \common\models\Courses::find()
+    ->select(['courses.name AS rating_title, avg(course_rating.score) AS rating, count(course_rating.score) AS qtd'])
     ->join('LEFT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
-$ratingsRight = \common\models\Courses::find()->select(['courses.name AS rating_title, avg(course_rating.score) AS rating',])
+$ratingsRight = \common\models\Courses::find()
+    ->select(['courses.name AS rating_title, avg(course_rating.score) AS rating, count(course_rating.score) AS qtd'])
     ->join('RIGHT JOIN', 'course_rating', 'course_rating.course_id = courses.id');
 $ratings = $ratingsLeft->union($ratingsRight)
     ->groupBy('courses.id')
@@ -36,6 +38,7 @@ $ratings = $ratingsLeft->union($ratingsRight)
                         <th>#</th>
                         <th>Curso</th>
                         <th>Avaliação</th>
+                        <th>Qtd. Usuários</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +53,9 @@ $ratings = $ratingsLeft->union($ratingsRight)
                             </td>
                             <td>
                                 <?= $rating->rating ? number_format(($rating->rating * 20), 2, ',', '.') . '%' : 'N/A'; ?>
+                            </td>
+                            <td>
+                                <?= $rating->qtd ? $rating->qtd : 'N/A'; ?>
                             </td>
                         </tr>
                     <?php endif; ?>

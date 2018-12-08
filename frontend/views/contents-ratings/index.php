@@ -43,11 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if(isset($_GET['courseId'])):
 
-        $ratingsLeft = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
+        $ratingsLeft = \common\models\Contents::find()
+            ->select(["title AS rating_title, avg(content_rating.score) AS rating, count(content_rating.score) AS qtd"])
             ->join('LEFT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
             ->leftJoin('courses', 'course_id = courses.id')
             ->where('courses.id = ' . $_GET['courseId']);
-        $ratingsRight = \common\models\Contents::find()->select(["title AS rating_title, avg(content_rating.score) AS rating"])
+        $ratingsRight = \common\models\Contents::find()
+            ->select(["title AS rating_title, avg(content_rating.score) AS rating, count(content_rating.score) AS qtd"])
             ->join('RIGHT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
             ->leftJoin('courses', 'course_id = courses.id')
             ->where('courses.id = ' . $_GET['courseId']);
@@ -66,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>#</th>
                         <th>Conteúdo</th>
                         <th>Avaliação</th>
+                        <th>Qtd. Usuários</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,6 +83,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </td>
                             <td>
                                 <?= $rating->rating ? number_format(($rating->rating * 20), 2, ',', '.') . '%' : 'N/A'; ?>
+                            </td>
+                            <td>
+                                <?= $rating->qtd ? $rating->qtd : 'N/A'; ?>
                             </td>
                         </tr>
                     <?php endif; ?>

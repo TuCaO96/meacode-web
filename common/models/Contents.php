@@ -36,8 +36,7 @@ class Contents extends \yii\db\ActiveRecord
             'id',
             'title',
             'text',
-            'user',
-            'ratings'
+            'user'
         ];
     }
 
@@ -46,6 +45,7 @@ class Contents extends \yii\db\ActiveRecord
         $attributes = parent::attributes();
         $attributes[] = 'rating';
         $attributes[] = 'rating_title';
+        $attributes[] = 'qtd';
 
         return $attributes;
     }
