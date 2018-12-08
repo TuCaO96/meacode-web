@@ -52,8 +52,8 @@ class ContentsController extends ActiveController
         $response = \Yii::$app->response;
         $response->statusCode = 200;
         $response->data = [
-            'content_rating' => $content_rating,
-            'course_rating' => $course_rating
+            'contentRating' => $content_rating,
+            'courseRating' => $course_rating
         ];
         $response->format = Response::FORMAT_JSON;
 
