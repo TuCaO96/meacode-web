@@ -3,6 +3,8 @@
 namespace api\controllers;
 
 use common\models\ContentRating;
+use common\models\CourseRating;
+use common\models\Courses;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\ContentNegotiator;
@@ -43,11 +45,15 @@ class ContentsController extends ActiveController
         $content_id = \Yii::$app->request->get('id');
 
         $content_rating = ContentRating::find()->where(['content_id' => $content_id, 'user_id' => $user_id])->one();
+        $course_id = $content_rating->getContent()->one()->getCourse()->one()->id;
+        $course_rating = CourseRating::find()->where(['course_id' => $course_id, 'user_id' => $user_id])->one();
+
 
         $response = \Yii::$app->response;
         $response->statusCode = 200;
         $response->data = [
-            'content_rating' => $content_rating
+            'content_rating' => $content_rating,
+            'course_rating' => $course_rating
         ];
         $response->format = Response::FORMAT_JSON;
 
