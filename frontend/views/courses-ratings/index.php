@@ -23,7 +23,7 @@ $ratings = $ratingsLeft->union($ratingsRight)
     ->groupBy('courses.id')
     ->all();
 
-\yii\helpers\ArrayHelper::multisort($ratings, 'rating', SORT_DESC);
+\yii\helpers\ArrayHelper::multisort($ratings, ['rating', 'qtd'], SORT_DESC);
 
 ?>
 <div class="content-rating-index">

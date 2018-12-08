@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ->groupBy('contents.id')
         ->all();
 
-        \yii\helpers\ArrayHelper::multisort($ratings, 'rating', SORT_DESC);
+        \yii\helpers\ArrayHelper::multisort($ratings, ['rating', 'qtd'], SORT_DESC);
 
         ?>
         <div class="row" style="margin-top: 15px">
