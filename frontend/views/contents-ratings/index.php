@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ->join('RIGHT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
             ->leftJoin('courses', 'course_id = courses.id')
             ->where('courses.id = ' . $_GET['courseId']);
-        $ratings = $ratingsLeft->union($ratingsRight)
+        $ratings = $ratingsLeft->union($ratingsRight, true)
             ->groupBy(['contents.id', 'contents.title'])
         ->all();
 
