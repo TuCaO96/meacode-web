@@ -16,22 +16,38 @@ $userSearches = \common\models\UserSearches::find()
     ->orderBy(['count_query' => SORT_DESC])
     ->all();
 
+$data = "";
+
+foreach ($userSearches as $search):
+    $data .= "['" . $search->search_query . "', " . $search->count_query . "],";
+endforeach;
+
+$script = " google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Termo', 'Quantidade de vezes buscado'],";
+$script .= $data;
+
+$script .= "]);
+
+        var options = {
+            title: 'Termos mais buscados'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }";
+
+$this->registerJs($script);
+
 ?>
 <div class="user-searches-index">
-    <table class="table table-bordered table-responsive">
-        <thead>
-            <tr>
-                <th><?= Yii::t('app', 'Termo') ?></th>
-                <th><?= Yii::t('app', 'Quantidade de vezes buscado') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($userSearches as $search): ?>
-                <tr>
-                    <td><?= $search->search_query ?></td>
-                    <td><?= $search->count_query ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-1">
+            <div id="piechart" style="width: 1200px; height: 800px;"></div>
+        </div>
+    </div>
 </div>
