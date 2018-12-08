@@ -44,17 +44,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if(isset($_GET['courseId'])):
 
         $ratingsLeft = \common\models\Contents::find()
-            ->select(["title AS rating_title, avg(content_rating.score) AS rating, count(content_rating.score) AS qtd"])
+            ->select(["contents.id, title AS rating_title, avg(content_rating.score) AS rating, count(content_rating.score) AS qtd"])
             ->join('LEFT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
             ->leftJoin('courses', 'course_id = courses.id')
             ->where('courses.id = ' . $_GET['courseId']);
         $ratingsRight = \common\models\Contents::find()
-            ->select(["title AS rating_title, avg(content_rating.score) AS rating, count(content_rating.score) AS qtd"])
+            ->select(["contents.id, title AS rating_title, avg(content_rating.score) AS rating, count(content_rating.score) AS qtd"])
             ->join('RIGHT JOIN', 'content_rating', 'content_rating.content_id = contents.id')
             ->leftJoin('courses', 'course_id = courses.id')
             ->where('courses.id = ' . $_GET['courseId']);
         $ratings = $ratingsLeft->union($ratingsRight, true)
-            ->groupBy(['contents.id', 'contents.title'])
+            ->groupBy('contents.id')
         ->all();
 
         \yii\helpers\ArrayHelper::multisort($ratings, ['rating', 'qtd'], SORT_DESC);
