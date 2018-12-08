@@ -45,9 +45,12 @@ class ContentsController extends ActiveController
         $content_id = \Yii::$app->request->get('id');
 
         $content_rating = ContentRating::find()->where(['content_id' => $content_id, 'user_id' => $user_id])->one();
-        $course_id = $content_rating->getContent()->one()->getCourse()->one()->id;
-        $course_rating = CourseRating::find()->where(['course_id' => $course_id, 'user_id' => $user_id])->one();
-
+        if ($content_rating !== null) {
+            $course_id = $content_rating->getContent()->one()->getCourse()->one()->id;
+            $course_rating = CourseRating::find()->where(['course_id' => $course_id, 'user_id' => $user_id])->one();
+        } else {
+            $course_rating = null;
+        }
 
         $response = \Yii::$app->response;
         $response->statusCode = 200;
