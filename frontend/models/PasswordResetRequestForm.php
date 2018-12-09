@@ -61,7 +61,7 @@ class PasswordResetRequestForm extends Model
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                 ['user' => $user]
             )
-            ->setFrom([Yii::$app->params['supportEmail'] => 'Sistema Me Acode'])
+            ->setFrom([Yii::$app->params['supportEmail'] => 'Equipe Me Acode'])
             ->setTo($this->email)
             ->setSubject('Recuperar sua senha')
             ->send();
