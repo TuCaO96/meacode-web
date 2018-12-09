@@ -81,6 +81,9 @@ class ContentsController extends ActiveController
         $response = \Yii::$app->response;
 
         if (!is_null($contentQuery)) {
+            $contentQuery->score = $score;
+            $contentQuery->save();
+
             $response->data = [
                 'content' => $contentQuery->getContent()->one()
             ];
@@ -92,7 +95,7 @@ class ContentsController extends ActiveController
             $response->data = [
                 'error' => $contentRating->getErrors()
             ];
-            $response->statusCode = 200;
+            $response->statusCode = 422;
             $response->format = Response::FORMAT_JSON;
 
             return $response;
