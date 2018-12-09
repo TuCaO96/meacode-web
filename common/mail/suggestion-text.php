@@ -9,11 +9,7 @@ Olá!
 
 Acabamos de receber sua sugestão, e em breve entraremos em contato.
 
-Título:
-
-****<?= $title ?>****
--------------------------------------
-Mensagem:
+****<?= $title ?>:****
 
 <?= $message ?>
 

@@ -10,9 +10,11 @@
 
     <p>Você nos sugeriu:</p>
 
-    <p>"<i><?= $suggestion_text ?></i>"</p>
+    <p><i><?= $suggestion_title ?></i>:</p>
+
+    <p><i><?= $suggestion_text ?></i></p>
 
     <p>Em resposta a sua sugestão, olha o que nossa equipe diz:</p>
 
-    <p>"<i><?= $message ?></i>"</p>
+    <p><b><?= $message ?></b></p>
 </div>

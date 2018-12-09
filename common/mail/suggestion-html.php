@@ -10,11 +10,7 @@
 
     <p>Acabamos de receber sua sugestão, e em breve entraremos em contato.</p>
 
-    <p>Título: </p>
+    <p><i><?= $title ?></i>: </p>
 
-    <p>"<i><?= $title ?></i>"</p>
-
-    <hr>
-
-    <p>"<i><?= $message ?></i>"</p>
+    <p><i><?= $message ?></i></p>
 </div>
