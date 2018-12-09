@@ -20,13 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true])
-                    ->label(Yii::t('app', 'Username'))?>
+                    ->label(Yii::t('app', 'Usuário')) ?>
 
                 <?= $form->field($model, 'password')->passwordInput()
-                    ->label(Yii::t('app', 'Password'))?>
+                    ->label(Yii::t('app', 'Senha')) ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox()
-                    ->label(Yii::t('app', 'Remember Me'))?>
+                    ->label(Yii::t('app', 'Lembrar de mim')) ?>
 
                 <div style="color:#999;margin:1em 0">
                     Se esqueceu sua senha, você pode <?= Html::a('atualizá-la', ['site/request-password-reset']) ?>.
