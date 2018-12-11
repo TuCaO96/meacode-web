@@ -71,7 +71,7 @@ class Courses extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'image_url' => Yii::t('app', 'URL da imagem'),
             'name' => Yii::t('app', 'Name'),
-            'category_id' => Yii::t('app', 'Category ID'),
+            'category_id' => Yii::t('app', 'Categoria'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

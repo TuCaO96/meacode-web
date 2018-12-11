@@ -77,8 +77,8 @@ class Contents extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'text' => Yii::t('app', 'Text'),
             'paid' => Yii::t('app', 'Paid?'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'course_id' => Yii::t('app', 'Course ID'),
+            'user_id' => Yii::t('app', 'Usuário'),
+            'course_id' => Yii::t('app', 'Curso'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
