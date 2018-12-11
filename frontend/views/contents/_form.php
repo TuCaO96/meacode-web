@@ -26,9 +26,6 @@ if($errors !== null){
         ],
     ])->label('Texto') ?>
 
-    <?= $form->field($model, 'paid')->dropDownList([false => 'Não', true => 'Sim'])
-        ->label('Pago?')?>
-
     <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
         ['prompt' => Yii::t('app', 'Selecione um usuário')])
         ->label('Usuário')?>
