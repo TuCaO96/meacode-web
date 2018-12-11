@@ -55,12 +55,12 @@ class Suggestions extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'title' => Yii::t('app', 'Title'),
+            'user_id' => Yii::t('app', 'Usuário'),
+            'title' => Yii::t('app', 'Título'),
             'email' => Yii::t('app', 'Email'),
-            'text' => Yii::t('app', 'Text'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'text' => Yii::t('app', 'Texto'),
+            'created_at' => Yii::t('app', 'Criado Em'),
+            'updated_at' => Yii::t('app', 'Atualizado Em'),
         ];
     }
 

@@ -48,8 +48,8 @@ class ContentRating extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'content_id' => Yii::t('app', 'Content ID'),
+            'user_id' => Yii::t('app', 'Usuário'),
+            'content_id' => Yii::t('app', 'Conteúdo'),
             'score' => Yii::t('app', 'Score'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

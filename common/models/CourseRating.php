@@ -50,10 +50,10 @@ class CourseRating extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'course_id' => Yii::t('app', 'Course ID'),
-            'score' => Yii::t('app', 'Score'),
-            'comments' => Yii::t('app', 'Comments'),
+            'user_id' => Yii::t('app', 'Usuário'),
+            'course_id' => Yii::t('app', 'Curso'),
+            'score' => Yii::t('app', 'Avaliação'),
+            'comments' => Yii::t('app', 'Comentários'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
