@@ -67,9 +67,7 @@ class CoursesController extends ActiveController
 
         $response = \Yii::$app->response;
         $response->statusCode = 200;
-        $response->data = [
-            'courseRating' => $course_rating
-        ];
+        $response->data = $course_rating;
         $response->format = Response::FORMAT_JSON;
 
         return $response;
