@@ -26,7 +26,7 @@ if($errors !== null){
         ],
     ])->label('Texto') ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->all(), 'id', 'username'),
+    <?= $form->field($model, 'user_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Users::find()->where(['type' => 2])->all(), 'id', 'username'),
         ['prompt' => Yii::t('app', 'Selecione um usuário')])
         ->label('Usuário')?>
 
