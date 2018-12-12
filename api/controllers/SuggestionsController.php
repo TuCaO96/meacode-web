@@ -101,16 +101,18 @@ class SuggestionsController extends ActiveController
         $email = \Yii::$app->request->post('email');
         $message = \Yii::$app->request->post('message');
         $suggestion_text = \Yii::$app->request->post('suggestion_text');
+        $suggestion_title = \Yii::$app->request->post('suggestion_title');
 
         return \Yii::$app
             ->mailer
             ->compose(
                 ['html' => 'replySuggestion-html', 'text' => 'replySuggestion-text'],
-                ['suggestion_text' => $suggestion_text, 'message' => $message, 'email' => $email]
+                ['suggestion_text' => $suggestion_text, 'suggestion_title' => $suggestion_title,
+                    'message' => $message, 'email' => $email]
             )
             ->setFrom([\Yii::$app->params['supportEmail'] => 'Equipe Me Acode'])
             ->setTo($email)
-            ->setSubject('Respondemos sua sugestão!')
+            ->setSubject('Respondemos sua sugestão :)')
             ->send();
     }
 

@@ -95,6 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
         var message = $('#replyMessage').val();
         var email = '<?= $model->email ?>';
         var suggestion_text = '<?= $model->text ?>';
+        var suggestion_title = '<?= $model->title ?>';
 
         $('#loadingBarRow').show();
 
@@ -102,7 +103,8 @@ $this->params['breadcrumbs'][] = $this->title;
             {
                 email: email,
                 message: message,
-                suggestion_text: suggestion_text
+                suggestion_text: suggestion_text,
+                suggestion_title: suggestion_title
             }).then(function onSuccess(data) {
             $('#loadingBar').hide();
                 alert('Resposta enviada com sucesso!');
