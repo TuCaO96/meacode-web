@@ -147,8 +147,6 @@ class CoursesController extends Controller
         $model->bindParam(':course_id', $id);
         $model->execute();
 
-        echo 'executed';die();
-
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
