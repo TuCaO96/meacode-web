@@ -87,8 +87,18 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if (Yii::$app->request->post('LoginForm') !== null) {
+            $model->username = Yii::$app->request->post('LoginForm')['username'];
+            $model->password = Yii::$app->request->post('LoginForm')['password'];
+        } else {
+            $model->username = Yii::$app->request->post('username');
+            $model->password = Yii::$app->request->post('password');
+        }
+
+        if ($model->username !== null && $model->password !== null) {
+            if ($model->login()) {
+                return $this->goBack();
+            }
         } else {
             $model->password = '';
 
@@ -202,10 +212,11 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'Senha atualizada com sucesso.');
-
-            return $this->goHome();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->resetPassword()) {
+                Yii::$app->session->setFlash('success', 'Senha atualizada com sucesso.');
+                return $this->goHome();
+            }
         }
 
         return $this->render('resetPassword', [
