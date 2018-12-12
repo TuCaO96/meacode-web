@@ -100,6 +100,13 @@ class SiteController extends Controller
             if ($model->login()) {
                 return $this->goBack();
             }
+            else {
+                $model->password = '';
+
+                return $this->render('login', [
+                    'model' => $model,
+                ]);
+            }
         } else {
             $model->password = '';
 
