@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\CourseRating;
 use Yii;
 use common\models\Courses;
 use frontend\models\search\Courses as CoursesSearch;
@@ -141,6 +142,11 @@ class CoursesController extends Controller
      */
     public function actionDelete($id)
     {
+        $connection = Yii::$app->getDb();
+        $model = $connection->createCommand('DELETE from course_rating WHERE course_id = :course_id');
+        $model->bindParam(':course_id', $id);
+        $model->execute();
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

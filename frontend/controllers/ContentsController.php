@@ -126,6 +126,11 @@ class ContentsController extends Controller
      */
     public function actionDelete($id)
     {
+        $connection = Yii::$app->getDb();
+        $model = $connection->createCommand('DELETE from content_rating WHERE course_id = :content_id');
+        $model->bindParam(':content_id', $id);
+        $model->execute();
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
