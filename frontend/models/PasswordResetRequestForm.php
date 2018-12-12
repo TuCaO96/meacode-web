@@ -58,7 +58,7 @@ class PasswordResetRequestForm extends Model
         return Yii::$app
             ->mailer
             ->compose(
-                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+                ['html' => 'resetPassword-html', 'text' => 'resetPassword-text'],
                 ['user' => $user]
             )
             ->setFrom([Yii::$app->params['supportEmail'] => 'Equipe Me Acode'])
