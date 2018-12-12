@@ -92,6 +92,7 @@ class SiteController extends Controller
             $model->password = Yii::$app->request->post('LoginForm')['password'];
         } else {
             $model->username = Yii::$app->request->post('username');
+
             $model->password = Yii::$app->request->post('password');
         }
 
